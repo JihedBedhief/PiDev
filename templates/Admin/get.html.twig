@@ -1,0 +1,65 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Vente index{% endblock %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card2">
+            <div class="card-body">
+                <a href="{{ path('display_admin') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title">Liste des ventes</h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>     
+                        <th>Produit</th>
+                        <th>Quantite</th>
+                        <th>Prix_unite</th>
+                        <th>Taxe</th>
+                        <th>Prix_totale</th>
+                        <th>Date_vente</th>
+                        <th>Client</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for vente in ventes %}
+                        <tr>
+                            
+                            <td>{{ vente.produit }}</td>
+                            <td>{{ vente.quantite }}</td>
+                            <td>{{ vente.prixUnite }}</td>
+                            <td>{{ vente.taxe }}</td>
+                            <td>{{ vente.prixTotale }}</td>
+                            <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d') : '' }}</td>
+                            <td>{{ vente.client }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('app_vente_edit',{'id':vente.id}) }}">Modifier</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('app_vente_delete',{'id':vente.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vente{% endblock %}
+
+{% block body %}
+    <h1>Vente</h1>
+<div style="margin-left:320px ; width:78% ; margin-top:100px">
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Produit</th>
+                <td>{{ vente.produit }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ vente.quantite }}</td>
+            </tr>
+            <tr>
+                <th>Prix de l'unite</th>
+                <td>{{ vente.prixUnite }}</td>
+            </tr>
+            <tr>
+                <th>Taxe</th>
+                <td>{{ vente.taxe }}</td>
+            </tr>
+            <tr>
+                <th>Prix Totale</th>
+                <td>{{ vente.prixTotale }}</td>
+            </tr>
+            <tr>
+                <th>Date de vente</th>
+                <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ vente.client }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<center>
+    <a href="{{ path('app_vente_index') }}">back to list</a>
+
+    <a href="{{ path('app_vente_edit', {'id': vente.id}) }}">edit</a>
+
+    {{ include('vente/_delete_form.html.twig') }}
+</center>
+{% endblock %}
