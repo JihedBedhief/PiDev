@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_product_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title"> Categorys List </h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>     
+                        <th>name</th>
+                        <th>description categorie</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for blog in categories %}
+                        <tr>
+                            
+                            <td>{{ blog.name }}</td>
+                            <td>{{ blog.description}}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('app_category_edit',{'id':blog.id}) }}">Modifier</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('app_category_delete',{'id':blog.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+                <div class="text-center mt-3">
+                <a class="btn btn-success" href="{{ path('app_category_new') }}">add</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

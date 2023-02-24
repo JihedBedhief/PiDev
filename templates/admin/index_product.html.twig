@@ -1,0 +1,52 @@
+{% extends 'base1.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+               
+                <h5 class="card-title">Products List</h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>   
+                        <th>Product name</th>
+                        <th>quantity</th>
+                        <th>prix</th>
+                        
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for blog in products %}
+                        <tr>
+                            
+                            <td>{{ blog.nameproduct }}</td>
+                            <td>{{ blog.quantite }}</td>
+                            <td>{{ blog.prix }}</td>
+
+                            
+                            
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+                
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
