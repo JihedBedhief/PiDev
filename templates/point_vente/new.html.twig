@@ -9,31 +9,31 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Add point de vente</h5>
-
+                    <div style="width :120%">    
                     <!-- General Form Elements -->
                     {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
-                        <label for="inputText" class="col-sm-4 col-form-label">name</label>
+                        <label for="inputText" class="col-sm-4 col-form-label">Nom</label>
                         <div class="col-sm-10">
                             {{ form_widget(f.name,{'attr':{'class':'form-control'}}) }}
 
                         </div>
                     {{ form_errors(f.name,{'attr':{'class':'text-danger'}}) }}
 
-                    <label for="inputText" class="col-sm-4 col-form-label">region</label>
+                    <label for="inputText" class="col-sm-4 col-form-label">Region</label>
                     <div class="col-sm-10">
                         {{ form_widget(f.region,{'attr':{'class':'form-control'}}) }}
 
                     </div>
                 {{ form_errors(f.region,{'attr':{'class':'text-danger'}}) }}
 
-                <label for="inputText" class="col-sm-4 col-form-label">ville</label>
+                <label for="inputText" class="col-sm-4 col-form-label">Ville</label>
                 <div class="col-sm-10">
                     {{ form_widget(f.ville,{'attr':{'class':'form-control'}}) }}
 
                 </div>
             {{ form_errors(f.ville,{'attr':{'class':'text-danger'}}) }}
 
-            <label for="inputText" class="col-sm-4 col-form-label">code_postal</label>
+            <label for="inputText" class="col-sm-4 col-form-label">Code Postal</label>
             <div class="col-sm-10">
                 {{ form_widget(f.code_postal,{'attr':{'class':'form-control'}}) }}
 
@@ -41,14 +41,14 @@
         {{ form_errors(f.code_postal,{'attr':{'class':'text-danger'}}) }}
 
                     
-                    <label for="inputText" class="col-sm-4 col-form-label">telephone</label>
+                    <label for="inputText" class="col-sm-4 col-form-label">Telephone</label>
                         <div class="col-sm-10">
                             {{ form_widget(f.telephone,{'attr':{'class':'form-control'}}) }}
 
                     </div>
                     {{ form_errors(f.telephone,{'attr':{'class':'text-danger'}}) }}
 
-                    <label for="inputText" class="col-sm-4 col-form-label">mail du point de vente</label>
+                    <label for="inputText" class="col-sm-4 col-form-label">Email</label>
                         <div class="col-sm-10">
                             {{ form_widget(f.email,{'attr':{'class':'form-control'}}) }}
 

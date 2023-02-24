@@ -101,7 +101,7 @@
                              src="{{asset('assets1/images/logo/accent-teal-100%402x.png')}}"
                              width="32"
                              alt="Huma">
-                        <span class="d-none d-lg-block">Huma</span>
+                        <span class="d-none d-lg-block">MY COMPANY</span>
                     </a>
 
                     <!-- <button class="btn navbar-btn mr-16pt" data-toggle="modal" data-target="#apps">Apps <i class="material-icons">arrow_drop_down</i></button> -->
@@ -148,7 +148,7 @@
                                      src="{{asset('assets1/images/people/50/guy-3.jpg')}}"
                                      alt="account" />
                                 <span class="flex d-flex flex-column mr-8pt">
-                                    <span class="navbar-text-100">Laza Bogdan</span>
+                                    <span class="navbar-text-100">Bedhief Jihed</span>
                                     <small class="navbar-text-50">Administrator</small>
                                 </span>
                             </a>
@@ -277,7 +277,7 @@
                                                 </span>
                                                 <span class="flex d-flex flex-column">
                                                     <strong class="text-black-100">Michelle</strong>
-                                                    <span class="text-black-70">Clients loved the new design.</span>
+                                                    <span class="text-black-70">Ventes loved the new design.</span>
                                                 </span>
                                             </span>
                                         </a>
@@ -344,7 +344,7 @@
 
                                 <small class="ml-4pt flex">
                                     <span class="d-flex flex-column">
-                                        <strong class="text-black-100">HumaHuma Inc.</strong>
+                                        <strong class="text-black-100">My Company Inc.</strong>
                                         <span class="text-black-50">Publisher</span>
                                     </span>
                                 </small>
@@ -371,9 +371,9 @@
                             <img class="brand-icon"
                                  src="{{asset('assets1/images/logo/black-70%402x.png')}}"
                                  width="30"
-                                 alt="Huma"> Huma
+                                 alt="Huma"> My Company
                         </p>
-                        <p class="measure-lead-max text-muted mb-0 small">Huma is a beautifully crafted user interface for modern Business Admin Web Applications, with examples for many pages needed for Customer Relationship Management, Enterprise Resource Planning, Human Resources, Content Management System, Project Management, Tasks, eCommerce, Messaging and Account Management.</p>
+                        <p class="measure-lead-max text-muted mb-0 small">My Company is a beautifully crafted user interface for modern Business Admin Web Applications, with examples for many pages needed for Customer Relationship Management, Enterprise Resource Planning, Human Resources, Content Management System, Project Management, Tasks, eCommerce, Messaging and Account Management.</p>
                     </div>
                     <div class="pb-16pt pb-lg-24pt">
                         <div class="container-fluid page__container">
@@ -514,12 +514,12 @@
                             <span class="material-icons">sync_alt</span>
                         </a>
 
-                        <a href="index.html"
+                        <a  href="{{path('get_admin_vente')}}"
                            class="sidebar-brand ">
                             <img class="sidebar-brand-icon"
                                  src="{{asset('assets1/images/logo/accent-teal-100%402x.png')}}"
                                  alt="Huma">
-                            <span>Huma</span>
+                            <span>MY COMPANY</span>
                         </a>
 
                         <div class="sidebar-account mx-16pt mb-16pt dropdown">
@@ -533,7 +533,7 @@
                                      src="{{asset('assets1/images/people/50/guy-3.jpg')}}"
                                      alt="account" />
                                 <span class="flex d-flex flex-column mr-8pt">
-                                    <span class="text-black-100">Laza Bogdan</span>
+                                    <span class="text-black-100">Bedhief Jihed</span>
                                     <small class="text-black-50">Administrator</small>
                                 </span>
                                 <i class="material-icons text-black-20 icon-16pt">keyboard_arrow_down</i>
@@ -577,7 +577,7 @@
 
                                     <small class="ml-4pt flex">
                                         <span class="d-flex flex-column">
-                                            <strong class="text-black-100">HumaHuma Inc.</strong>
+                                            <strong class="text-black-100">My Company Inc.</strong>
                                             <span class="text-black-50">Publisher</span>
                                         </span>
                                     </small>
@@ -598,12 +598,19 @@
                         <ul class="sidebar-menu">
                             <li class="sidebar-menu-item active">
                                 <a class="sidebar-menu-button"
-                                   href="index.html">
+                                     href="{{ path('get_admin_vente' )}}"> 
                                     <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
-                                    <span class="sidebar-menu-text">Dashboard</span>
+                                    <span class="sidebar-menu-text">Les Vente</span>
                                 </a>
+                                
+                                    <li class="sidebar-menu-item active">
+                                        <a class="sidebar-menu-button"
+                                             href="{{ path('get_admin_pointvente' )}}"> 
+                                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
+                                            <span class="sidebar-menu-text">Points de Vente</span>
+                                        </a>
                             </li>
-                            <li class="sidebar-menu-item">
+                            {# <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
                                    data-toggle="collapse"
                                    href="#dashboards_menu">
@@ -680,10 +687,10 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> #}
                         </ul>
 
-                        <div class="sidebar-heading">Applications</div>
+                        {# <div class="sidebar-heading">Applications</div>
                         <ul class="sidebar-menu">
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button js-sidebar-collapse"
@@ -736,7 +743,8 @@
                                            href="departments.html">
                                             <span class="sidebar-menu-text">Departments</span>
                                         </a>
-                                    </li>
+                                    </li> #}
+
                                     <!-- <li class="sidebar-menu-item">
   <a class="sidebar-menu-button disabled" href="documents.html">
     <span class="sidebar-menu-text">Documents</span>
@@ -777,7 +785,7 @@
     <span class="sidebar-menu-text">Inventory</span>
   </a>
 </li> -->
-                                </ul>
+                                {# </ul>
                             </li>
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
@@ -812,7 +820,7 @@
                                            href="kanban.html">
                                             <span class="sidebar-menu-text">Kanban</span>
                                         </a>
-                                    </li>
+                                    </li> #}
                                     <!-- <li class="sidebar-menu-item">
   <a class="sidebar-menu-button disabled" href="task-details.html">
     <span class="sidebar-menu-text">Task Details</span>
@@ -823,7 +831,7 @@
     <span class="sidebar-menu-text">Team Members</span>
   </a>
 </li> -->
-                                </ul>
+                                {# </ul>
                             </li>
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
@@ -873,7 +881,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> #}
                             <!-- <li class="sidebar-menu-item">
           <a class="sidebar-menu-button" data-toggle="collapse" href="#marketplace_menu">
             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">assessment</span>
@@ -898,7 +906,7 @@
             
           </ul>
         </li> -->
-                            <li class="sidebar-menu-item">
+                            {# <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
                                    data-toggle="collapse"
                                    href="#cms_menu">
@@ -1145,7 +1153,7 @@
                                            href="ui-pagination.html">
                                             <span class="sidebar-menu-text">Pagination</span>
                                         </a>
-                                    </li>
+                                    </li> #}
                                     <!-- <li class="sidebar-menu-item">
   <a class="sidebar-menu-button disabled" href="ui-typography.html">
     <span class="sidebar-menu-text">Typography</span>
@@ -1176,7 +1184,7 @@
     <span class="sidebar-menu-text">Chips</span>
   </a>
 </li> -->
-                                    <li class="sidebar-menu-item">
+                                    {# <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button disabled"
                                            href="#">
                                             <span class="sidebar-menu-text">Disabled</span>
@@ -1327,7 +1335,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> #}
                         </ul>
 
                     </div>

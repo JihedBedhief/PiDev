@@ -5,9 +5,10 @@
 {% block body %}
     <h1>Vente</h1>
 <div style="margin-left:320px ; width:78% ; margin-top:100px">
+    <div style="width :120%">
     <table class="table">
         <tbody>
-            
+
             <tr>
                 <th>Produit</th>
                 <td>{{ vente.produit }}</td>
@@ -35,6 +36,10 @@
             <tr>
                 <th>Client</th>
                 <td>{{ vente.client }}</td>
+            </tr>
+            <tr>
+                <th>Point de Vente </th>
+                <td>{{ vente.PointVente  }}</td>
             </tr>
         </tbody>
     </table>

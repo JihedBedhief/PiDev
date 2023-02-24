@@ -21,16 +21,10 @@ class VenteController extends AbstractController
         ]);
     }
     
-    #[Route('/admin', name: 'display_admin', methods: ['GET'])]
-    public function indexAdmin():Response
-    {
-        return $this->render('Admin/index.html.twig',);
-    }
-
-    #[Route('/admin/get', name: 'get_admin', methods: ['GET'])]
+    #[Route('/admin', name: 'get_admin_vente', methods: ['GET'])]
     public function get_admin(VenteRepository $venteRepository):Response
     {
-        return $this->render('Admin/get.html.twig',
+        return $this->render('Admin/vente/get.html.twig',
         ['ventes' => $venteRepository->findAll(),
     ]);
     }
@@ -65,7 +59,7 @@ class VenteController extends AbstractController
     #[Route('/{id}/admin', name: 'app_vente_show_admin', methods: ['GET'])]
     public function show_admin(Vente $vente): Response
     {
-        return $this->render('admin/show.html.twig', [
+        return $this->render('admin/vente/show.html.twig', [
             'vente' => $vente,
         ]);
     }
@@ -105,6 +99,6 @@ class VenteController extends AbstractController
             $venteRepository->remove($vente, true);
         }
 
-        return $this->redirectToRoute('display_admin', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('get_admin_vente', [], Response::HTTP_SEE_OTHER);
     }
 }

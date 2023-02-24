@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base1.html.twig' %}
 
 {% block title %}PointVente index{% endblock %}
 
@@ -6,14 +6,14 @@
 
 
 <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
-
+    
     <div class="col-lg-6">
 
         <div class="card2">
             <div class="card-body">
-                <a href="{{ path('app_point_vente_new') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <a href="{{ path('get_admin_pointvente') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
                 <h5 class="card-title">Liste des points de vente</h5>
-                <div style="width :120%">
+
                 <!-- Table with stripped rows -->
                 <table class="table table-striped">
                     <thead>
@@ -38,11 +38,9 @@
                             <td>{{ pointvente.telephone }}</td>
                             <td>{{ pointvente.email }}</td>
                             
+                           
                             <td>
-                                <a class="btn btn-success" href="{{ path('app_point_vente_edit',{'id':pointvente.id}) }}">Modifier</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger" href="{{ path('app_point_vente_delete',{'id':pointvente.id}) }}">Supprimer</a>
+                                <a class="btn btn-danger" href="{{ path('app_point_vente_delete_admin', {'id': pointvente.id}) }}">Supprimer</a>
                             </td>
                         </tr>
 

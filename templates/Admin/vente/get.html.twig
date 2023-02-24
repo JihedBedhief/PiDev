@@ -12,21 +12,22 @@
 
         <div class="card2">
             <div class="card-body">
-                <a href="{{ path('display_admin') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <a href="{{ path('get_admin_vente') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
                 <h5 class="card-title">Liste des ventes</h5>
-
+                
                 <!-- Table with stripped rows -->
                 <table class="table table-striped">
                     <thead>
                     <tr>     
                         <th>Produit</th>
                         <th>Quantite</th>
-                        <th>Prix_unite</th>
+                        <th>Prix de l'unite</th>
                         <th>Taxe</th>
-                        <th>Prix_totale</th>
-                        <th>Date_vente</th>
+                        <th>Le Prix totale</th>
+                        <th>La Date de vente</th>
                         <th>Client</th>
-                        <th>actions</th>
+                        <th>Point de Vente</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,11 +41,9 @@
                             <td>{{ vente.prixTotale }}</td>
                             <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d') : '' }}</td>
                             <td>{{ vente.client }}</td>
+                            <td>{{ vente.PointVente }}</td>
                             <td>
-                                <a class="btn btn-success" href="{{ path('app_vente_edit',{'id':vente.id}) }}">Modifier</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger" href="{{ path('app_vente_delete',{'id':vente.id}) }}">Supprimer</a>
+                                <a class="btn btn-danger" href="{{  path('app_vente_delete_admin', {'id': vente.id}) }}">Supprimer</a>
                             </td>
                         </tr>
 

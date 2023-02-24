@@ -49,7 +49,8 @@ class Vente
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $client = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Vente', cascade:["persist", "remove"])]
+    #[Assert\NotBlank]
+    #[ORM\ManyToOne(inversedBy: 'Vente', cascade:["persist"])]
     private ?PointVente $PointVente = null;
 
     public function getId(): ?int

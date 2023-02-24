@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 #[Route('/pointVente')]
 class PointVenteController extends AbstractController
@@ -20,7 +21,13 @@ class PointVenteController extends AbstractController
             'point_ventes' => $pointVenteRepository->findAll(),
         ]);
     }
-
+    #[Route('/admin', name: 'get_admin_pointvente', methods: ['GET'])]
+    public function get_admin(PointVenteRepository $pointVenteRepository):Response
+    {
+        return $this->render('Admin/pointvente/get.html.twig', [
+            'point_ventes' => $pointVenteRepository->findAll(),
+        ]);
+    }
     #[Route('/new', name: 'app_point_vente_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PointVenteRepository $pointVenteRepository): Response
     {
@@ -47,7 +54,13 @@ class PointVenteController extends AbstractController
             'point_vente' => $pointVente,
         ]);
     }
-
+    #[Route('/{id}/admin', name: 'app_point_vente_show_admin', methods: ['GET'])]
+    public function show_admin(PointVente $pointVente): Response
+    {
+    return $this->render('admin/pointvente/show.html.twig', [
+        'point_vente' => $pointVente,
+    ]);}
+   
     #[Route('/{id}/edit', name: 'app_point_vente_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, PointVente $pointVente, PointVenteRepository $pointVenteRepository): Response
     {
@@ -75,4 +88,14 @@ class PointVenteController extends AbstractController
 
         return $this->redirectToRoute('app_point_vente_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/{id}/admin', name: 'app_point_vente_delete_admin', methods: ['POST'])]
+    public function delete_pt_admin(Request $request, PointVente $pointVente, PointVenteRepository $pointVenteRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$pointVente->getId(), $request->request->get('_token'))) {
+            $pointVenteRepository->remove($pointVente, true);
+        }
+
+        return $this->redirectToRoute('get_admin_pointvente', [], Response::HTTP_SEE_OTHER);
+    }
+    
 }
