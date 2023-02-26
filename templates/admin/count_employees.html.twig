@@ -1,0 +1,15 @@
+{% extends 'base1.html.twig' %}
+
+{% block body %}
+<div  class="col-md-6 offset-md-3">
+    <h1>Count Employees records</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+ <div class="table table-striped">
+    {% if count is not null %}
+        <p>Number of Employees records with id_company = {{ form.vars.value.id }}: {{ count }}</p>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

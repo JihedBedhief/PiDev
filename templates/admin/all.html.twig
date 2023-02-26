@@ -1,0 +1,42 @@
+{% extends 'base1.html.twig' %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('index_admin') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                
+                <h5 class="card-title">Employees</h5>
+                <!-- Table with stripped rows -->
+              
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee name</th>
+                            <th>Function</th>
+                            <th>Department</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employer in rhs %}
+                            <tr>
+                                <td>{{ employer.name }}</td>
+                                <td>{{ employer.fonction }}</td>
+                                <td>{{ employer.departement }}</td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('app_adminrh_show',{'id':employer.id}) }}">View details</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+          
+                <!-- End small tables -->
+            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
