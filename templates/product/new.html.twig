@@ -33,16 +33,14 @@
 					<label for="inputText" class="col-sm-18 col-form-label">Quantity</label>
 					<div class="col-sm-18">
 						{{ form_widget(form.quantite,{'attr':{'class':'form-control'}}) }}
-
-					</div>
-					<div style="display:none">
-					<label for="inputText" class="col-sm-18 col-form-label">image</label>
-					<div class="col-sm-18">
-						{{ form_widget(form.image,{'attr':{'class':'form-control'}}) }}
-
-					</div>
 					</div>
 					{{ form_errors(form.quantite,{'attr':{'class':'text-danger'}}) }}
+
+					<div class="form-group">
+						{{ form_row(form.image, {'attr':{'placeholder': 'Your photo ' , id : 'customFile1'}}) }}
+						{{ form_errors(form.image )}}
+					</div>
+
 					<label for="inputText" class="col-sm-18 col-form-label">Category name</label>
 					<div class="col-sm-18">
 						{{ form_widget(form.category,{'attr':{'class':'form-control'}}) }}

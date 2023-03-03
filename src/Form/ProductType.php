@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProductType extends AbstractType
 {
@@ -17,11 +18,16 @@ class ProductType extends AbstractType
             ->add('name_product')
             ->add('quantite')
             ->add('prix')
-            ->add('image', null, [
-                'label' => 'Ajouter une image',
+            ->add('image',FileType::class,[
+                'label' => 'image',
+                'mapped' => false,
                 'required' => false,
-                
-                'empty_data' => 'assets1/images/logo/accent-teal-100%402x.png',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2Mi',
+                        'mimeTypesMessage' => 'Please upload a valid image file',
+                    ])
+                ],
             ])
             ->add('category')
             ->add('ADD',SubmitType::class)
