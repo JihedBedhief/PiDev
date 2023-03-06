@@ -18,6 +18,11 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use function PHPUnit\Framework\countOf;
 use Dompdf\Dompdf ;
 use Dompdf\Options;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\DependencyInjection\Loader\Configurator;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+use Symfony\Component\Mime\Email;
+
 /**
  * @Route("/user")
  */
@@ -88,9 +93,32 @@ class UserController extends AbstractController
         
         $user=$em->find($id);
         if($user->getStatuts()=="desable"){
-        $user->setStatuts("enable");}
+        $user->setStatuts("enable");
+        $email=$user->getEmail();
+        $mail=(new Email())
+        ->from('pidevmycompany2023@gmail.com')
+        ->to($email)
+        ->subject('statut updated')
+        ->text("your account has been enabled !");
+        $trasport= new GmailSmtpTransport('pidevmycompany2023@gmail.com','guyuwthwzlzquasf');
+        $mailer= new mailer($trasport);
+        $mailer->send($mail);
+    
+    
+    }
         elseif($user->getStatuts()=="enable"){
-        $user->setStatuts("desable");}
+        $user->setStatuts("desable");
+        $email=$user->getEmail();
+        $mail=(new Email())
+        ->from('pidevmycompany2023@gmail.com')
+        ->to($email)
+        ->subject('statut updated')
+        ->text("your account has been desabled !");
+        $trasport= new GmailSmtpTransport('pidevmycompany2023@gmail.com','guyuwthwzlzquasf');
+        $mailer= new mailer($trasport);
+        $mailer->send($mail);
+    
+    }
         $em=$mg->getManager();
         $em->persist($user); 
         $em->flush();

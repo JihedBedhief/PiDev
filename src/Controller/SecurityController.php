@@ -10,7 +10,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\DependencyInjection\Loader\Configurator;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 class SecurityController extends AbstractController
 {
     /**
@@ -84,6 +87,15 @@ class SecurityController extends AbstractController
             $user->setPassword($passwordEncoder->encodePassword($user,$request->request->get('password')));
             $entityManager = $this ->getDoctrine()->getManager();
             $entityManager->flush();
+            $email=$user->getEmail();
+               $mail=(new Email())
+               ->from('pidevmycompany2023@gmail.com')
+               ->to($email)
+               ->subject('PASSWORD CHANGED')
+               ->text("your PASSWORD has been changed !");
+               $trasport= new GmailSmtpTransport('pidevmycompany2023@gmail.com','guyuwthwzlzquasf');
+               $mailer= new mailer($trasport);
+               $mailer->send($mail);
             return $this->redirectToRoute('app_login');}
         else{
             return $this->render('security/reset_password.html.twig',['page' => "page2",'reset_token' => $reset_token]);
