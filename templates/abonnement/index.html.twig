@@ -1,0 +1,56 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Abonnement{% endblock %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_abonnement_new') }}"> <i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i>ajouter un abonnement</a>
+                <h5 class="card-title">Liste abonnements</h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>     
+                        <th>Type</th>
+                        <th>Duree</th>
+                        <th>Frais</th>
+                         <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+        {% for abonnement in abonnements %}
+                        <tr>
+                            <td>{{ abonnement.type }}</td>
+                            <td>{{ abonnement.duree }}</td>
+                            <td>{{ abonnement.frais }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('app_abonnement_edit',{'id':abonnement.id}) }}">Modifier</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('app_abonnement_show',{'id':abonnement.id}) }}">afficher</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
