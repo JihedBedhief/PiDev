@@ -5,6 +5,8 @@ namespace App\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UserRepository;
+use App\Entity\User;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
@@ -53,8 +55,13 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         if (in_array('ROLE_ADMIN',$user->getRoles())) {
             return new RedirectResponse($this->urlGenerator->generate('admin_index'));
         }elseif(in_array('ROLE_USER',$user->getRoles())) {
-            if($user->getStatuts()=="enable"){
+            if($user->getStatuts()=="enable" && $user->getActivationToken()==NULL){
             return new RedirectResponse($this->urlGenerator->generate('app_home'));}
+
+            elseif($user->getActivationToken()!=NULL){
+            return new RedirectResponse($this->urlGenerator->generate('notverified_user'));
+                
+            }
             else{ return new RedirectResponse($this->urlGenerator->generate('app_desabled_user'));}
         }
         // For example:

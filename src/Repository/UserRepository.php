@@ -85,6 +85,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             return $query->getResult();
         }
     }
+    public function verifierid($id)
+    {
+        {
+            $em = $this->getEntityManager();
+
+            $query = $em->createQuery(
+                'SELECT u FROM   App\Entity\User u  where   u.id = :id '
+            );
+            $query->setParameter('id', $id);
+
+
+            return $query->getResult();
+        }
+    }
 
 //    /**
 //     * @return User[] Returns an array of User objects
