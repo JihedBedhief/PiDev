@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class Abonnement1Type extends AbstractType
 {
@@ -31,6 +33,12 @@ class Abonnement1Type extends AbstractType
                     '100DT' => '100DT', ],] )
             
             ->add('ajouter',SubmitType::class)
+
+            >add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'register',
+                             
+            ])
 
         ;
     }
