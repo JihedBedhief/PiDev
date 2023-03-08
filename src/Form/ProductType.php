@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Product;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +20,7 @@ class ProductType extends AbstractType
             ->add('name_product')
             ->add('quantite')
             ->add('prix')
+            ->add('taxe')
             ->add('image',FileType::class,[
                 'label' => 'image',
                 'mapped' => false,
@@ -29,7 +32,12 @@ class ProductType extends AbstractType
                     ])
                 ],
             ])
-            ->add('category')
+            ->add('category',EntityType::class,[
+                'class'=>Category::class,
+                'choice_label'=>'description'
+                
+            ])
+//
             ->add('ADD',SubmitType::class)
         ;
     }

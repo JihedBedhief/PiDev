@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 
 /**
@@ -15,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     /**
+      * Groups("categories")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -33,19 +36,22 @@ class Category
      *     message="Le nom doit commencer par une majuscule."
      * )
      * @ORM\Column(type="string", length=255)
+     *        Groups("categories")
+
      */
     private $name;
  /**
      * @Assert\NotBlank(message=" description doit etre non vide")
      
     
-     *  
+     *   Groups("categories")
      * @ORM\Column(type="string", length=255)
      */
     private $description;
 
     /**
      *  @ORM\OneToMany(targetEntity=Product::class, mappedBy="category", cascade={"remove"})
+     *  Groups("categories")
      */
     private $products;
 
@@ -115,7 +121,7 @@ class Category
         return $this;
     }
     public function __toString(){
-        return  $this->description; 
+        return  $this->name; 
       }
 
     

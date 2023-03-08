@@ -19,13 +19,21 @@
                 <th>Name_product</th>
                 <td>{{ product.nameProduct }}</td>
             </tr>
+            <tr>
+                {% if product.category is defined and product.category.name is defined %}
+                <th>category</th>
+                <td>{{ product.category }}</td>
+            {% endif %}
+                
+            </tr>
             <div style="display:none">
              <tr>
-             <th>image</th>
+             <th>Image</th>
                 <td><div class="border-top-0">
                     <div>
-                        <img src="/uploads/{{ product.image }}" alt="" class="img-4by3-lg rounded" width="25%" height="25%" />                    </div>
-                       <td>
+                        <img src="/uploads/{{ product.image }}" alt="" class="img-4by3-lg rounded" width="25%" height="25%" />                
+                    </div>
+                </td>
             </tr>
             </div>
             <tr>

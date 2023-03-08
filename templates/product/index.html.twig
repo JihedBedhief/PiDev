@@ -19,7 +19,7 @@
                         <th>Product name</th>
                         <th>quantity</th>
                         <th>prix</th>
-                        
+                        <th>category</th> 
 
                         <th>Show Details</th>
                         <th>Update</th>
@@ -32,6 +32,7 @@
                             <td>{{ blog.nameproduct }}</td>
                             <td>{{ blog.quantite }}</td>
                             <td>{{ blog.prix }}</td>
+                            <td>{{ blog.category }}</td>
 
                             <td>
                                 <a class="btn btn-success" href="{{ path('app_product_show',{'id':blog.id}) }}">Show</a>
@@ -41,6 +42,8 @@
                             </td>
                             
                         </tr>
+
+                        
 
                     {% endfor %}
 

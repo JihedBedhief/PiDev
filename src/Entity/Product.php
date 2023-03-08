@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -14,12 +15,14 @@ class Product
 {
     /**
      * @ORM\Id
+     * Groups("products")
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     *  Groups("products")
      * @Assert\NotBlank(message=" nom doit etre non vide")
      * @Assert\Length(
      *      min = 3,
@@ -34,18 +37,21 @@ class Product
     private $name_product;
 
     /**
+     * Groups("products")
      * @Assert\NotBlank(message=" quantite doit etre non vide")
      * @Assert\GreaterThan(0)
      * @ORM\Column(type="string", length=1000)
      */
     private $quantite;
 
-    /**
+    /*
+    * Groups("products")
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      */
     private $category;
 
     /**
+     * Groups("products")
      * @Assert\NotBlank(message="prix doit etre non vide")
      * @Assert\GreaterThan(0)
      * @ORM\Column(type="float")
@@ -53,9 +59,18 @@ class Product
     private $prix;
 
     /**
+     * Groups("products")
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * Groups("products")
+     * @Assert\NotBlank(message="taxe rate doit etre non vide")
+     * @Assert\GreaterThan(0)
+     * @ORM\Column(type="float")
+     */
+    private $taxe;
 
     public function getId(): ?int
     {
@@ -118,6 +133,18 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getTaxe(): ?float
+    {
+        return $this->taxe;
+    }
+
+    public function setTaxe(float $taxe): self
+    {
+        $this->taxe = $taxe;
 
         return $this;
     }

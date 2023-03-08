@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\category;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +15,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Dompdf\Dompdf;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
+
 
 
 /**
@@ -37,6 +44,19 @@ class ProductController extends AbstractController
     //         'products' => $productRepository->findAll(),
     //     ]);
     // }
+    /**
+ * @Route("/{id}/total", name="product_total", methods={"GET", "POST"})
+ */
+public function purchaseTotal(Product $product)
+{
+    $total = $product->getPrix() * $product->getQuantite() + ($product->getPrix() * $product->getQuantite() * $product-> getTaxe() / 100);
+
+    return $this->render('product/total.html.twig', [
+        'product' => $product,
+        'total' => $total,
+    ]);
+}
+
 
       /**
       * @Route("/", name="app_product_index", methods={"GET"})
@@ -135,6 +155,7 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
              /** @var UploadedFile $imageFile */
+             dd($product->getCategory());
            
     $imageFile = $form->get('image')->getData();
 
@@ -151,13 +172,14 @@ class ProductController extends AbstractController
          }
          $product->setImage($newFilename);
             $productRepository->add($product, true);
-           
+         
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('product/new.html.twig', [
             'product' => $product,
             'form' => $form,
+            
         ]);
     }
 
@@ -189,9 +211,25 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $productRepository->add($product, true);
+            /** @var UploadedFile $imageFile */
+          
+   $imageFile = $form->get('image')->getData();
 
-            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+   // if($imageFile){
+        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+        try {
+            $imageFile->move(
+                $this->getParameter('images_directory'),
+                $newFilename
+            );
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+        $product->setImage($newFilename);
+           $productRepository->add($product, true);
+          
+           return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('product/edit.html.twig', [
@@ -212,5 +250,43 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
 
-   
+    
+    /**
+     * @Route("/{id}/pdf", name="app_product_pdf", methods={"GET"})
+     */
+public function pdf( Product $product): Response
+{
+    // create new PDF document
+    $dompdf = new Dompdf();
+    
+    // generate HTML content for the document
+    $html = $this->renderView('product/pdf.html.twig', [
+        'product' => $product, 
+        
+    ]);
+
+    // load HTML into the PDF document
+    $dompdf->loadHtml($html);
+
+    // render PDF document
+    $dompdf->render();
+
+    // create a response object to return the PDF file
+    $response = new Response($dompdf->output());
+    
+    // set content type to application/pdf
+    $response->headers->set('Content-Type', 'application/pdf');
+
+    $disposition = $response->headers->makeDisposition(
+        ResponseHeaderBag::DISPOSITION_INLINE,
+        'product.pdf'
+    );
+    $response->headers->set('Content-Disposition', $disposition);
+
+    return $response;
 }
+
+}
+
+   
+
