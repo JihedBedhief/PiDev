@@ -18,6 +18,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Dompdf\Dompdf;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 
 
@@ -66,7 +67,7 @@ public function purchaseTotal(Product $product)
         $entityManager = $this->getDoctrine()->getManager();
     
         // récupérer les paramètres de la requête
-        $limit = $request->query->getInt('limit', 5);
+        $limit = $request->query->getInt('limit', 4);
         $page = $request->query->getInt('page', 1);
         $q = $request->query->get('q');
     
@@ -147,7 +148,7 @@ public function purchaseTotal(Product $product)
     /**
      * @Route("/new", name="app_product_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ProductRepository $productRepository): Response
+    public function new(Request $request, ProductRepository $productRepository, FlashyNotifier $flashy): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -155,7 +156,7 @@ public function purchaseTotal(Product $product)
 
         if ($form->isSubmitted() && $form->isValid()) {
              /** @var UploadedFile $imageFile */
-             dd($product->getCategory());
+             $product->getCategory();
            
     $imageFile = $form->get('image')->getData();
 
@@ -172,7 +173,7 @@ public function purchaseTotal(Product $product)
          }
          $product->setImage($newFilename);
             $productRepository->add($product, true);
-         
+            $flashy->success('Produit ajouté avec succés!');
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -205,7 +206,7 @@ public function purchaseTotal(Product $product)
     /**
      * @Route("/{id}/edit", name="app_product_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function edit(Request $request, Product $product, ProductRepository $productRepository,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -228,7 +229,7 @@ public function purchaseTotal(Product $product)
         }
         $product->setImage($newFilename);
            $productRepository->add($product, true);
-          
+           $flashy->warning('Produit modifié avec succés!');
            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -241,10 +242,11 @@ public function purchaseTotal(Product $product)
     /**
      * @Route("/{id}", name="app_product_delete", methods={"POST"})
      */
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function delete(Request $request, Product $product, ProductRepository $productRepository,FlashyNotifier $flashy): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
+            $flashy->error('Produit supprimé avec succés!');
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
@@ -285,6 +287,32 @@ public function pdf( Product $product): Response
 
     return $response;
 }
+     /**
+     * @Route("/product_stat", name="product_stat", methods={"GET", "POST"})
+     */
+    public function indexhome(ProductRepository $ProductRepository, CategoryRepository $CategoryRepository): Response
+    {
+        $Products = $ProductRepository->findAll();
+        $ProductColor = [];
+        $ProductCategory = [];
+        $ProductCount = [];
+        
+  
+        $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+        foreach ($Products as $Product) {
+            $ProductCategory[] = $Bilan->getCategory();
+            $ProductColor[] = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+            $ProductCount[] = count($ProductCategory);
+        }
+       
+        return $this->render('admin/index.html.twig', [
+            'controller_name' => 'AdminController',
+            'ProductCategory' => $ProductCategory,
+            'ProductCount' => $ProductCount,
+            'ProductColor' => $ProductColor,
+
+        ]);
+    }
 
 }
 

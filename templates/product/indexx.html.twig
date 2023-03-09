@@ -70,13 +70,13 @@
                             </td>
                            
                             <td>
-                                <a class="btn btn-success" href="{{ path('app_product_edit',{'id':p.id}) }}">Update</a>
+                                <a class="btn btn-danger" href="{{ path('app_product_edit',{'id':p.id}) }}">Update</a>
                             </td>
                             <td>
                                 <a class="btn btn-success" href="{{ path('product_total',{'id':p.id}) }}">Display</a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{ path('app_product_pdf',{'id':p.id}) }}">Pdf</a>
+                                <a class="btn btn-danger" href="{{ path('app_product_pdf',{'id':p.id}) }}">Pdf</a>
                             </td>
                 </tr>
             {% else %}
@@ -102,5 +102,5 @@
     {% endif %}
 
     <div class="text-center mt-3">
-        <a class="btn btn-success" href="{{ path('app_product_new') }}">add</a>
+        <a class="btn btn-outline-primary" href="{{ path('app_product_new') }}">add</a>
         </div>{% endblock %}
