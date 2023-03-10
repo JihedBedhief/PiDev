@@ -23,6 +23,7 @@ use MercurySeries\FlashyBundle\FlashyNotifier;
 
 
 
+
 /**
  * @Route("/product")
  */
@@ -287,33 +288,61 @@ public function pdf( Product $product): Response
 
     return $response;
 }
-     /**
-     * @Route("/product_stat", name="product_stat", methods={"GET", "POST"})
-     */
-    public function indexhome(ProductRepository $ProductRepository, CategoryRepository $CategoryRepository): Response
-    {
-        $Products = $ProductRepository->findAll();
-        $ProductColor = [];
-        $ProductCategory = [];
-        $ProductCount = [];
+    //  /**
+    //  * @Route("/product_stat", name="product_stat")
+    //  */
+    // public function statistique(ProductRepository $ProductRepository): Response
+    // {
+    //     $Products = $ProductRepository->findAll();
+    //     $ProductColor = [];
+    //     $ProductCategory = [];
+    //     $ProductCount = [];
         
   
-        $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-        foreach ($Products as $Product) {
-            $ProductCategory[] = $Bilan->getCategory();
-            $ProductColor[] = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
-            $ProductCount[] = count($ProductCategory);
-        }
+    //     $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+    //     foreach ($Products as $Product) {
+    //         $ProductCategory[] = $Product->getCategory();
+    //         $ProductColor[] = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+    //         $ProductCount[] = count($ProductCategory);
+    //     }
        
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-            'ProductCategory' => $ProductCategory,
-            'ProductCount' => $ProductCount,
-            'ProductColor' => $ProductColor,
+    //     return $this->render('dashboard/index.html.twig', [
+    //         'controller_name' => 'ProductController',
+    //         'ProductCategory' => $ProductCategory,
+    //         'ProductCount' => $ProductCount,
+    //         'ProductColor' => $ProductColor,
 
+    //     ]);
+    // }
+/**
+     * @Route("/statistiques", name="statistiques")
+     */
+    public function statistiques(ProductRepository $repProd, CategoryRepository $repCat)
+    { $categories = $repCat->findAll();
+
+        $categNom = [];
+        //  $categColor = [];
+        $categCount = [];
+
+        // On "démonte" les données pour les séparer tel qu'attendu par ChartJS
+        foreach($categories as $categorie){
+            $categNom[] = $category->getName();
+            //$categColor[] = $categorie->getColor();
+            $categCount[] = count($category->getProducts());
+        }
+
+        // On va chercher le nombre d'annonces publiées par date
+        $product = $repProd->countByCategory();
+
+
+        return $this->render('product/stats.html.twig', [
+            'categNom' => json_encode($categNom),
+
+            'categCount' => json_encode($categCount),
+
+            'produitCount' => json_encode($produitCount),
         ]);
     }
-
 }
 
    

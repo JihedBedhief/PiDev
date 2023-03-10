@@ -20,6 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 
 
+
 class ProductjsonController extends AbstractController
 {
     /**
@@ -64,8 +65,6 @@ class ProductjsonController extends AbstractController
       * @Route("/detailProduct", name="detail_product")
       * @Method("GET")
       */
-
-     //Detail Product
      public function detailProductAction(Request $request)
      {
          $id = $request->get("id");
@@ -81,5 +80,58 @@ class ProductjsonController extends AbstractController
          $formatted = $serializer->normalize($Product);
          return new JsonResponse($formatted);
      }
+
+       /**
+     * @Route("/updateProduct", name="update_product")
+     * @Method("PUT")
+     */
+    public function modifierProduit(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $Product = $this->getDoctrine()->getManager()
+                        ->getRepository(Product::class)
+                        ->find($request->get("id"));
+
+        $Product->setNameProduct($request->get("name_product"));
+        $Product->setQuantite($request->get("quantite"));
+        $Product->setPrix($request->get("prix"));
+        $Product->setTaxe($request->get("taxe"));
+
+
+        $em->persist($Product);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($Product);
+        return new JsonResponse("Produit a ete modifiee avec success.");
+
+    }
+
+     /**
+      * @Route("/addproduct", name="add_product")
+      * @Method("POST")
+      */
+
+      public function ajouterProduit(Request $request)
+      {
+          $Product = new Product();
+          $name_product = $request->query->get("name_product");
+          $quantite = $request->query->get("quantite");
+          $prix = $request->query->get("prix");
+          $taxe = $request->query->get("taxe");
+          $em = $this->getDoctrine()->getManager();
+ 
+          $Product->setNameProduct($name_product);
+          $Product->setQuantite($quantite);
+          $Product->setPrix($prix);
+          $Product->setTaxe($taxe);
+ 
+          $em->persist($Product);
+          $em->flush();
+          $serializer = new Serializer([new ObjectNormalizer()]);
+          $formatted = $serializer->normalize($Product);
+          return new JsonResponse($formatted);
+ 
+      }
+
+      
 
 }
