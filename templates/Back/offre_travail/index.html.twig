@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}OffreTravail index{% endblock %}
+
+{% block bodyBack %}
+    <h1>OffreTravail index</h1>
+
+    <table class="table" border="2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Restaurant </th>
+                <th>Restaurant owner</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre_travail in offre_travails %}
+            <tr>
+                <td>{{ offre_travail.id }}</td>
+                <td>{{ offre_travail.titre }}</td>
+                <td>{{ offre_travail.description }}</td>
+                <td>{{ offre_travail.restaurant }}</td>
+                <td>{{ offre_travail.user.prenom ~" "~ offre_travail.user.nom }}</td>
+
+                <td>
+                    <a class="btn btn-primary" href="{{ path('offre_travail_show', {'id': offre_travail.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('offre_travail_edit', {'id': offre_travail.id}) }}">edit</a>
+                    {{ include('Back/offre_travail/_delete_form.html.twig') }}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('offre_travail_new') }}">Create new</a>
+{% endblock %}

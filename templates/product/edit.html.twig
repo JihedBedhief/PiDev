@@ -1,0 +1,70 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Update Product</h5>
+                    <a href="{{ path('app_product_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+                    <!-- General Form Elements -->
+                    {{ form_start(form) }}
+                    <label for="inputText" class="col-sm-4 col-form-label">Product name</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.name_product,{'attr':{'class':'form-control'}}) }}
+                    </div>
+
+
+                    <label for="inputText" class="col-sm-4 col-form-label">Quantity</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.quantite,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                      <label for="inputText" class="col-sm-18 col-form-label">Prix</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}
+                     </div>
+                     <br>
+                     <label for="inputText" class="col-sm-18 col-form-label">Taxe rate</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.taxe,{'attr':{'class':'form-control'}}) }}
+                     </div>
+
+                     <br>
+                    {# <label for="inputText" class="col-sm-18 col-form-label">Image</label>
+                    <div class="form-group">
+                        {{ form_row(form.image, {'attr':{'placeholder': 'Your photo ' , id : 'customFile1'}}) }}
+                        {{ form_errors(form.image )}}					
+                    </div> #}
+                        
+                    <br>
+                     <label for="inputText" class="col-sm-4 col-form-label">Category</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.category,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+					
+                    
+                    
+
+                    <br/>
+                    <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+                        {{ form_widget(form.ADD,{'attr':{'class':'btn btn-primary'}}) }}
+                    </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}

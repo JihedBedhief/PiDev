@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Division
+{% endblock %}
+
+{% block body %}
+	<div style="margin-left:320px ; width:78% ; margin-top:100px">
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Type</th>
+					<td>{{ division.type }}</td>
+				</tr>
+				<tr>
+					<th>Taux_remise</th>
+					<td>{{ division.tauxRemise }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<center>
+		<a class="btn btn-success" href="{{ path('app_division_index') }}"style="margin-left:180px">back to list</a>
+		<a class="btn btn-success" href="{{ path('app_division_edit', {'id': division.id}) }}" style="margin-left:130px">edit</a>
+		{{include('division/_delete_form.html.twig')}}
+		
+	</center>
+{% endblock %}

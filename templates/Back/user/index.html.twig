@@ -1,0 +1,53 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block bodyBack %}
+    <h1>User index</h1>
+
+    <table class="table" border="2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date</th>
+                <th>Sexe</th>
+                <th>Numero_tele</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Address</th>
+                <th>Password</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.date ? user.date|date('Y-m-d') : '' }}</td>
+                <td>{{ user.sexe }}</td>
+                <td>{{ user.numeroTele }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.password|length }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    {{ include('Back/user/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('user_new') }}">Créer nouveau utilisateur</a>
+    <a class="btn btn-primary" href="{{ path('user_download') }}">Télécharger données</a>
+{% endblock %}

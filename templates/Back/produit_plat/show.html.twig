@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Boisson / Plat{% endblock %}
+
+{% block bodyBack %}
+    <h1>Plats / Boissons</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Table Plats/Boissons</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                </div>
+            </div>
+        <tbody>
+            <tr>
+                <th>Id_produitplat</th>
+                <td>{{ produit_plat.idProduitplat }}</td>
+            </tr>
+            <tr>
+                <th>Id_categorie</th>
+                <td>{{ produit_plat.idCategorie }}</td>
+            </tr>
+            <tr>
+                <th>Nom_produitplat</th>
+                <td>{{ produit_plat.nomProduitplat }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit_plat.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+    <div class="col-md-12 text-center">
+        <a class="btn btn-outline-dark" href="{{ path('produit_plat_index') }}">Liste des plats/boissons</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<div class="form-group">
+
+
+        <div class="alert alert-warning"  style="display: {% if form.titre.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.titre) }}
+            <a class="close" href="#"></a>
+        </div>
+            {{ form_label(form.titre,'Titre') }}
+            {{ form_widget(form.titre, {'attr': {'class': 'with-border','cols': '55','placeholder':'e.g. le balcon'}}) }}
+
+</div>
+
+<div class="form-group" >
+    <div class="submit-field">
+        <div class="alert alert-warning"  style="display: {% if form.description.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.description) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.description,'Description') }}
+        {{ form_widget(form.description, {'attr': {'cols': '55','rows':'5','placeholder':'e.g. le balcon'}}) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="submit-field">
+        <div class="alert alert-warning"  style="display: {% if form.restaurant.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.restaurant) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.restaurant,'Restaurant') }}
+        {{ form_widget(form.restaurant,{'attr':{'title':'Select your entreprise'}}) }}
+    </div>
+</div>
+
+
+    <button   class="btn btn-primary" >{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

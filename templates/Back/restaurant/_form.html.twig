@@ -1,0 +1,57 @@
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate' , 'class':'form-horizontal'}}) }}
+
+<h1> Restaurant </h1>
+<div class="form-group">
+    <h5 class="text-danger"> {{ form_errors(form.nom_restaurant) }}</h5>
+
+{{ form_label(form.nom_restaurant,"Nom du restaurant") }}
+{{ form_widget(form.nom_restaurant ,{'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger">  {{ form_errors(form.desc_restaurant) }}</h5>
+
+
+{{ form_label(form.desc_restaurant,"la Description du restaurant") }}
+{{ form_widget(form.desc_restaurant,{'attr': {'class': 'form-control'}})  }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger">    {{ form_errors(form.capacite) }}</h5>
+{{ form_label(form.capacite,"la capacite du restaurant") }}
+{{ form_widget(form.capacite,{'attr': {'class': 'form-control'}})  }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger"> {{ form_errors(form.num_tel) }}</h5>
+
+{{ form_label(form.num_tel,"le numero du telephone ") }}
+{{ form_widget(form.num_tel ,{'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger"> {{ form_errors(form.adresse) }}</h5>
+{{ form_label(form.adresse,"l'adresse") }}
+{{ form_widget(form.adresse ,{'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger"> {{ form_errors(form.specialite) }}</h5>
+{{ form_label(form.specialite,"la specialite")}}
+{{ form_widget(form.specialite ,{'attr': {'class': 'form-control'}}) }}
+</div>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="checkbox">
+    <h5 class="text-danger"> {{ form_errors(form.produitplats) }}</h5>
+    {{ form_label(form.produitplats,"Composez votre menu",{'attr': {'class': 'label label-primary'}})}}
+    {{ form_widget(form.produitplats ,{'attr': {'class': 'form-check-input position-static'}}) }}
+</div>
+</div>
+<div class="col-md-12 text-center">
+    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+
+</div>
+{{ form_end(form) }}
+

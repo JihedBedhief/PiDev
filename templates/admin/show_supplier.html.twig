@@ -1,0 +1,58 @@
+
+
+{#*******************************************************************************************#}
+{% extends 'base1.html.twig' %}
+
+{% block title %}Supplier index{% endblock %}
+{% block body %}
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+        <div class="col-lg-6">
+
+            <div class="card1">
+                <div class="card-body" style="padding:30px">
+                    </a>
+                    <h5 class="card-title">
+                    Supplier List
+                    </h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%  for supplier in suppliers %}
+                                <tr>
+                                <td>{{ supplier.id }}</td>
+                                <td>{{ supplier.name }}</td>
+                                <td>{{ supplier.type }}</td>
+                                <td>{{ supplier.address }}</td>
+                                <td>{{ supplier.phoneNumber }}</td>
+                                <td>{{ supplier.email }}</td>
+                        
+                                    
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+

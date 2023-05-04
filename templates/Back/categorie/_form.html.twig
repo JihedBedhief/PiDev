@@ -1,0 +1,19 @@
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate' , 'class':'form-horizontal'}}) }}
+
+<h1> Categorie </h1>
+
+
+
+    <h5 class="text-danger">   {{ form_errors(form.nom_categorie) }} </h5>
+    {{ form_label(form.nom_categorie,"Nom de la categorie") }}
+    {{ form_widget(form.nom_categorie ,{'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="col-md-12 text-center">
+    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+
+
+{{ form_end(form) }}
+
+

@@ -1,0 +1,65 @@
+<div class="card">
+	<div class="card-body" style="padding:5px">
+		
+		{# <input type="search" id="myInput" class="form-control pl-6" placeholder="Search Client"/>
+							<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+							<script>
+								$(document).ready(function () {
+		$("#myInput").on("keyup", function () {
+		var value = $(this).val().toLowerCase();
+		$("#myTable tr").filter(function () {
+		$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+		})
+		});
+		</script> #}
+		<h5 class="card-title">Liste des Clients</h5>
+		<a href="{{ path('app_client_new') }}">
+			<i class="ri-add-circle-fill" style="font-size: 50px;"></i>
+		</a>
+		 
+		<!-- Table with stripped rows -->
+		<table class="table table-striped" id="myTable">
+		<div>
+		 <h4 style="margin-left:800px"> total client : {{total}} </h4>
+		</div>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Telephone</th>
+					<th>Email</th>
+					<th>Ville</th>
+					<th>Code_postal</th>
+					<th>Cin</th>
+					<th>division</th>
+					<th>Date D'ajout</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for client in clients %}
+					<tr>
+						<td>{{ client.name }}</td>
+						<td>{{ client.telephone }}</td>
+						<td>{{ client.email }}</td>
+						<td>{{ client.ville }}</td>
+						<td>{{ client.codePostal }}</td>
+						<td>{{ client.cin }}</td>
+						<td>{{ client.division }}</td>
+						<td>{{ client.DateAjout| date('Y-m-d')  }}</td>
+						<td>
+							<a class="btn btn-success" href="{{path('app_client_edit',{'id':client.id}) }}">edit</a>
+						</td>
+						<td>
+							<a class="btn btn-success" href="{{path('app_client_show',{'id':client.id}) }}">show</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+		
+	</div>
+</div>
+
+

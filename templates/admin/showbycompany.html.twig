@@ -1,0 +1,33 @@
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_rh_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                  
+                <h5 class="card-title"> Employers</h5>
+               
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Function</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rh in rhList %}
+            <tr>
+                <td>{{ rh.name }}</td>
+                <td>{{ rh.fonction }}</td>
+                <td>{{ rh.phone_number }}</td>
+                <td>{{ rh.email }}</td>
+                <td>{{ rh.departement }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,57 @@
+
+{#*******************************************************************************************#}
+{% extends 'base1.html.twig' %}
+
+{% block title %}Purchase index{% endblock %}
+{% block body %}
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+        <div class="col-lg-6">
+
+            <div class="card1">
+                <div class="card-body" style="padding:30px">
+                    </a>
+                    <h5 class="card-title">
+                        Purchase List
+                    </h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>Id</th>
+                            <th>Product</th>
+                            <th>Qte</th>
+                            <th>UnitPrice</th>
+                            <th>PuchaseDate</th>
+                            <th>TaxeRate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%  for purchase in purchases %}
+                                <tr>
+                                <td>{{ purchase.id }}</td>
+                                <td>{{ purchase.product }}</td>
+                                <td>{{ purchase.qte }}</td>
+                                <td>{{ purchase.unitPrice }}</td>
+                                <td>{{ purchase.puchaseDate ? purchase.puchaseDate|date('Y-m-d') : '' }}</td>
+                                <td>{{ purchase.taxeRate }}</td>
+                
+                        
+        
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

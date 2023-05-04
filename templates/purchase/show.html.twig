@@ -1,0 +1,90 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_purchase_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title"> Invoice detaill</h5>
+
+                <table class="table">
+                <tbody>
+                 <tr>
+                        <th>Supplier name</th>
+                        <td>{{ purchase.supplier.name }}</td>
+                    </tr>
+                <tr>
+        
+                        <th>Purchase_date</th>
+                        <td>{{ purchase.puchaseDate ? purchase.puchaseDate|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ purchase.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Produit</th>
+                        <td>{{ purchase.product }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Unit_price</th>
+                        <td>{{ purchase.unitPrice }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantity</th>
+                        <td>{{ purchase.qte }}</td>
+                    </tr>
+                    <tr>
+                        <th>Taxe rate</th>
+                        <td>{{ purchase.taxeRate }}</td>
+                    </tr>
+                    <tr>
+                        <th>Taxe value</th>
+                        <td>{{ purchase.taxeRate * ( purchase.unitPrice * purchase.qte ) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total price</th>
+                        <td>{{ ( purchase.unitPrice * purchase.qte ) + ( purchase.taxeRate * ( purchase.unitPrice * purchase.qte ) ) }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+    <div class="row mt-3">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="d-grid">
+    <button class="btn btn-danger">
+      {{ include('purchase/_delete_form.html.twig') }}
+    </button>
+  </div>
+
+    </div>
+    <div class="col-sm-6">
+      <div class="d-grid">
+        <a href="{{ path('app_purchase_index') }}" class="btn btn-success">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+    
+
+              <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
+

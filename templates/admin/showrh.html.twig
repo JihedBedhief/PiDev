@@ -1,0 +1,87 @@
+
+
+{% extends 'base1.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Employee Detaill</h5>
+
+                
+
+
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Name</th>
+                <td>{{ rh.name }}</td>
+            </tr>
+            <tr>
+                <th>Phone number</th>
+                <td>{{ rh.phonenumber }}</td>
+            </tr>
+            <tr>
+               <th>Email</th>
+               <td>{{ rh.email }}</td>
+            </tr>
+            <tr>
+                <th>Fonction</th>
+                <td>{{ rh.fonction }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ rh.departement }}</td>
+            </tr>
+         
+          {#}  <tr>
+                <th>Contract type</th>
+                <td>{{ rh.contract.type }}</td>
+            </tr>
+            <tr>
+                <th>Contract duration</th>
+                <td>{{ rh.contract.duration }} years</td>
+            </tr>#}
+        
+        </tbody>
+    </table>
+
+    <div class="row mt-3">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="d-grid">
+    <a class="btn btn-danger">
+      {{ include('admin/_delete.html.twig') }}
+  </a>
+  </div>
+  
+    </div>
+    <div class="col-sm-6">
+      <div class="d-grid">
+        <a href="{{ path('index_all') }}" class="btn btn-success">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+    
+
+              <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
+

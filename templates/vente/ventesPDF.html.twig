@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ventes</title>
+</head>
+<body>
+    <div style="margin: 0 auto;display: block;width: 500px;">
+        <center><h1>Liste des ventes</h1></center>
+        <table width="100%" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produit</th>
+                    <th>Qantité</th>
+                    <th>Prix unité</th>
+                    <th>Taxe</th>
+                    <th>Prix Totale</th>
+                    <th>Date vente</th>
+                    <th>Client</th>
+                </tr>
+            </thead>
+            <tbody>
+          {%  for vente in ventes %}
+                <tr>
+                    <td>{{ vente.getId() }}</td>
+                    <td>{{ vente.getProduit() }}</td>
+                    <td>{{ vente.getQuantite() }}</td>
+                    <td>{{ vente.getPrixUnite() }}</td>
+                    <td>{{ vente.getTaxe() }}</td>
+                    <td>{{ vente.getPrixTotale() }}</td>
+                    <td>{{ vente.getDateVente().format('d/m/Y') }}</td>
+                    <td>{{ vente.getClient() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        </table>
+    </div>
+</body>
+</html>

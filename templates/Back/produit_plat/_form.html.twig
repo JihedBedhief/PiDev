@@ -1,0 +1,32 @@
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate' , 'class':'form-horizontal'}}) }}
+<div class="form-group">
+
+    <h5 class="text-danger">    {{ form_errors(form.nom_produitplat) }}</h5>
+    {{ form_label(form.nom_produitplat,"Nom du plat ou boissons") }}
+    {{ form_widget(form.nom_produitplat ,{'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+
+    <h5 class="text-danger">  {{ form_errors(form.desc_produitplat) }}</h5>
+    {{ form_label(form.desc_produitplat,"Introduisez les ingrediants") }}
+    {{ form_widget(form.desc_produitplat ,{'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger">  {{ form_errors(form.prix) }}</h5>
+    {{ form_label(form.prix,"Prix") }}
+    {{ form_widget(form.prix,{'attr': {'class': 'form-control'}})  }}
+</div>
+<div class="form-group">
+    <h5 class="text-danger">  {{ form_errors(form.categories) }}</h5>
+    {{ form_label(form.categories,"la categorie relative") }}
+    {{ form_widget(form.categories,{'attr': {'class': 'form-control'}})  }}
+</div>
+
+<div class="col-md-12 text-center">
+    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+
+</div>
+
+
+{{ form_end(form) }}

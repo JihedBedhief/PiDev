@@ -1,0 +1,48 @@
+{% extends 'base1.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+              
+                <h5 class="card-title"> Categorys List </h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>     
+                        <th>name</th>
+                        <th>description categorie</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for blog in categories %}
+                        <tr>
+                            
+                            <td>{{ blog.name }}</td>
+                            <td>{{ blog.description}}</td>
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+               
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

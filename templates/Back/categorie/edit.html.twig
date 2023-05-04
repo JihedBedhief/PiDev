@@ -1,0 +1,37 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Categorie{% endblock %}
+
+{% block bodyBack %}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Modifier une categorie</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <div class="card-body">
+
+                            {{ include('Back/categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+    <a href="{{ path('categorie_index') }}">back to list</a>
+
+    {{ include('Back/categorie/_delete_form.html.twig') }}
+{% endblock %}

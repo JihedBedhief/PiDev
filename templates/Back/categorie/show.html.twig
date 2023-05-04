@@ -1,0 +1,38 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block bodyBack %}
+    <h1>Categorie</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Table des categories </h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                </div>
+            </div>
+        <tbody>
+            <tr>
+                <th>Id_categorie</th>
+                <td>{{ categorie.idCategorie }}</td>
+            </tr>
+            <tr>
+                <th>Nom_categorie</th>
+                <td>{{ categorie.nomCategorie }}</td>
+            </tr>
+        </tbody>
+    </table>
+        </table>
+    </div>
+</div>
+
+    <div class="col-md-12 text-center">
+        <a class="btn btn-outline-dark" href="{{ path('categorie_index') }}">Liste des catégories</a>
+    </div>
+{% endblock %}

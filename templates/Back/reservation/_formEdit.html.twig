@@ -1,0 +1,28 @@
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate' , 'class':'booking-form'}}) }}
+
+   {# <div class="form-group">
+    {{ form_label(form.id_client,"l'identifiant du client") }}
+    {{ form_errors(form.id_client) }}
+    {{ form_widget(form.id_client ,{'attr': {'class': 'form-control'}}) }}
+    </div>#}
+    <div class="form-group">
+    {{ form_label(form.nombre,"nombre de place à reserver") }}
+    {{ form_errors(form.nombre) }}
+    {{ form_widget(form.nombre,{'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+
+    {{ form_label(form.date_reservation,"la date de reservation") }}
+    {{ form_errors(form.date_reservation) }}
+    {{ form_widget(form.date_reservation ,{'attr': {'class': 'input-group date'}}) }}
+    </div>
+    <div class="form-group">
+    {{ form_label(form.restaurants,"Nom du restaurant") }}
+    {{ form_errors(form.restaurants) }}
+    {{ form_widget(form.restaurants ,{'attr': {'class': 'custom-select form-control'}}) }}
+        <div class="col-md-12 text-center">
+            <button class="btn btn-primary">{{ button_label|default('Modifier') }}</button>
+
+        </div>
+    {{ form_end(form) }}

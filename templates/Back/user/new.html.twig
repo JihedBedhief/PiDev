@@ -1,0 +1,25 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Ajouter Utilisateur{% endblock %}
+
+{% block bodyBack %}
+    <section class="content" style="margin-left: 20%">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h1>Create new User</h1>
+                     </div>
+                    <div class="card-body">
+                        {{ include('Back/user/_form.html.twig') }}
+                    </div>
+                        <a  class="btn btn-primary" href="{{ path('user_index') }}">back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

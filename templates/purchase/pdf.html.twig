@@ -1,0 +1,118 @@
+
+
+{% block body %}
+<style>
+    .invoice {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.invoice-header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.invoice-header img {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.invoice-details {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoice-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.invoice-table th {
+  background-color: #f2f2f2;
+}
+
+.invoice-table tbody td:last-child,
+.invoice-table tbody th:last-child {
+  text-align: right;
+}
+
+.invoice-footer {
+  margin-top: 20px;
+}
+
+    </style>
+
+<div class="invoice">
+<div class="invoice-header">
+  <img src="your-logo.png" alt="Your Logo">
+  <h1>Invoice  Num  <span>{{ purchase.id }}</span></h1>
+</div>
+<div class="invoice-table">
+ <table style="border: 1rem;">
+    <tr>
+    <th>Supplier name</th>
+    <th>Purchase_date</th>
+</tr>
+<tr>
+    <td>{{ purchase.supplier.name }}</td>
+    <td>{{ purchase.puchaseDate ? purchase.puchaseDate|date('Y-m-d') : '' }}</td>
+   
+</tr>
+
+</table>
+</div>
+<table class="invoice-table">
+  <thead>
+    <tr>
+      <th>Item Description</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>{{ purchase.product }}</td>
+    <td>{{ purchase.qte }}</td>
+    <td>{{ purchase.unitPrice }}</td>
+    <td>{{  purchase.unitPrice * purchase.qte  }}</td>
+    </tr>
+    <tr>
+      <td colspan="3">Tax Rate</td>
+    <td>{{ purchase.taxeRate }} %</td>
+    </tr>
+    <tr>
+    <td colspan="3">Tax value</td>
+<td>{{ (purchase.taxeRate * ( purchase.unitPrice * purchase.qte ))/100 }}</td>
+  </tr>
+    <tr>
+      <td colspan="3">Total</td>
+    <td>{{ ( purchase.unitPrice * purchase.qte ) + ( purchase.taxeRate * ( purchase.unitPrice * purchase.qte ) ) }}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="invoice-footer">
+  <p>Thank you for your business.</p>
+  <p>Contact us at <a href="mailto:contact@mYCompany.com">contact@myCompany.com</a>.</p>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

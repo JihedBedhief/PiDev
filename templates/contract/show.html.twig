@@ -1,0 +1,101 @@
+
+
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_rh_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+				<div class="col-sm-6">
+      <div class="d-grid">
+	<a class="btn btn-success create-pdf-btn" href="{{ path('app_contract_pdf', {'id': contract.id}) }}">Download as pdf</a>
+	<style>
+		.create-pdf-btn{
+
+		float: right;
+  margin-top: -40px;
+  margin-left: 150%;
+  width: 10rem;
+  background-color: rgb(red, green, 0);
+  color: white;
+		}
+
+	</style>
+      </div>
+    </div>
+                <h5 class="card-title"> Contract Detaill</h5>
+
+                {% block title %}{% endblock %}
+
+
+    
+		<table class="table">
+			<tbody>
+			
+			<tr>
+					<th>Employee name</th>
+					<td>{{ contract.employer }}</td>
+				</tr>
+				<tr>
+					<th>Employee function</th>
+					<td>{{ contract.employer.fonction }}</td>
+				</tr>				
+				<tr>
+					<th>Type</th>
+					<td>{{ contract.type }}</td>
+				</tr>
+				
+				<tr>
+					<th>Duration</th>
+					<td>{{ contract.duration }}</td>
+				</tr>
+				<tr>
+					<th>Salary</th>
+					<td>{{ contract.salary }}</td>
+				</tr>
+				
+			</tbody>
+		</table>
+
+		<div class="row mt-3">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="d-grid">
+    <a class="btn btn-danger">
+      {{ include('contract/_delete_form.html.twig') }}
+    </a>
+  </div>
+  
+  
+    </div>
+    <div class="col-sm-6">
+      <div class="d-grid">
+        <a href="{{ path('app_contract_index') }}" class="btn btn-success">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+    
+
+   
+            <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
+

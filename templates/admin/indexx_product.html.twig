@@ -1,0 +1,84 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_product_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title">Products List</h5>
+
+
+                <form class="d-flex align-items-center col-12 col-md-8 col-lg-3">
+                    <span class="position-absolute pl-3 search-icon">
+                     <i class="fe fe-search"></i>
+                   </span>
+     <input type="search" id="myInput" class="form-control pl-6" placeholder="Search Produit" />
+               
+                 </form>
+                <br>
+                <!-- Table with stripped rows -->               
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+                <script>
+                $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+                });
+                });
+                </script>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>   
+                        <th>Product name</th>
+                        <th>quantity</th>
+                        <th>prix</th>
+                        <th>category</th>
+                        
+
+                        
+                    </tr>
+                    </thead>
+                    <tbody id="myTable">
+            {% for p in products %}
+                <tr>
+                    <td>{{ p.nameproduct }}</td>
+                    <td>{{ p.quantite }}</td>
+                    <td>{{ p.prix }}</td>
+                    <td>{{ p.getCategory()}}</td>
+                           
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+                </table>
+
+                {% if products|length > 0 %}
+                    <ul class="pagination justify-content-center">
+                        {% for page in products.page %}
+                            <li {% if page.isCurrentPage %}class="active"{% endif %}>
+                                <a href="{{ path('app_product_show', {'page': page.number, 'q': q}) }}">{{ page.number }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            
+                    {{ knp_pagination_render(products) }}
+                {% endif %}
+
+   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

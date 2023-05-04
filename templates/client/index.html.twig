@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Client index
+{% endblock %}
+{% block body %}
+
+	<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 100px;margin-left:100px;">
+		<div class="col-lg-10" style="margin-left:180px;">
+			<div style="margin-left=200px">
+			{{ include('@MercurySeriesFlashy/flashy.html.twig') }}	
+				<div class="card-body" style="display: flex;align-items: center;justify-content: center;">
+					<h5 class="card-title">filter</h5>
+					<form id="filters">
+						{% for division in divisions %}
+							<ul class="list-group">
+								<li class="list-group-item">
+									<input class="form-check-input me-1" type="checkbox" name="divisions[]" id="divi{{division.id}}" value="{{division.id}}"/>
+									<label for="divi{{division.id}}">{{division.type}}</label>
+								</li>
+							</ul>
+						{% endfor %}
+						
+					</form>
+				</div>
+				<div id="content">
+					{% include "client/_content.html.twig"%}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('assets/js/filter.js')}}"></script>
+{% endblock %}

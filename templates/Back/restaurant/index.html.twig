@@ -1,0 +1,67 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des Restaurants {% endblock %}
+
+{% block bodyBack %}
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Liste des restaurants</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+
+                        </div>
+                    </div>
+
+                <thead>
+                <tr>
+                    <th>Id_restaurant</th>
+                    <th>Nom_restaurant</th>
+                    <th>Desc_restaurant</th>
+                    <th>Capacite</th>
+                    <th>Num_tel</th>
+                    <th>Adresse</th>
+                    <th>Specialite</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for restaurant in restaurants %}
+                <tr>
+                    <td>{{ restaurant.idRestaurant }}</td>
+                    <td>{{ restaurant.nomRestaurant }}</td>
+                    <td>{{ restaurant.descRestaurant }}</td>
+                    <td>{{ restaurant.capacite }}</td>
+                    <td>{{ restaurant.numTel }}</td>
+                    <td>{{ restaurant.adresse }}</td>
+                    <td>{{ restaurant.specialite }}</td>
+                    <td>
+                        <a class="btn btn-info" href="{{ path('restaurant_show', {'id_restaurant': restaurant.getIdRestaurant()}) }}">Afficher</a>
+                        <a class="btn btn-secondary" href="{{ path('restaurant_edit', {'id_restaurant': restaurant.getIdRestaurant()}) }}">Modifier</a>
+                        {{ include('Back/restaurant/_delete_form.html.twig' , {'button_label': 'Delete'}) }}
+
+                    </td>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,84 @@
+
+
+{#*****************************************************************************#}
+
+
+{% extends 'base1.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Employer Detaill</h5>
+
+                
+
+
+				<table class="table">
+				<tbody>
+				<tr>
+						<th>Employer name</th>
+						<td>{{ contract.employer }}</td>
+					</tr>
+					<tr>
+						<th>Employer function</th>
+						<td>{{ contract.employer.fonction }}</td>
+					</tr>				
+					<tr>
+						<th>Type</th>
+						<td>{{ contract.type }}</td>
+					</tr>
+					
+					<tr>
+						<th>Duration</th>
+						<td>{{ contract.duration }}</td>
+					</tr>
+					<tr>
+						<th>Salary</th>
+						<td>{{ contract.salary }}</td>
+					</tr>
+					
+				</tbody>
+			</table>
+
+    {#<div class="row mt-3">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="d-grid">
+    <button class="btn btn-danger">
+      {{ include('admin/_deletecnt.html.twig') }}
+    </button>
+  </div>
+  
+    </div>
+    <div class="col-sm-6">
+      <div class="d-grid">
+        <a href="{{ path('contract_all') }}" class="btn btn-success">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>#}
+    
+
+              <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
+
+
+
+

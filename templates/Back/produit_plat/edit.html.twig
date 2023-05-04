@@ -1,0 +1,43 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Modifier ProduitPlat{% endblock %}
+
+{% block bodyBack %}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Modifier un produit </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <div class="card-body">
+
+                            {{ include('Back/produit_plat/_form.html.twig', {'button_label': 'Modifier'}) }}
+                        </div>
+                        <div class="card-body">
+                            {{ include('Back/produit_plat/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+    <a href="{{ path('produit_plat_index') }}">Retour à la liste</a>
+
+    {{ include('Back/produit_plat/_delete_form.html.twig') }}
+{% endblock %}

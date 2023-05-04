@@ -1,0 +1,56 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Liste des Produits/Plats {% endblock %}
+
+{% block bodyBack %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Table Plats/Boissons</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                </div>
+            </div>
+        <thead>
+            <tr>
+                <th>Id_produitplat</th>
+                <th>Id_categorie</th>
+                <th>Nom_produitplat</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit_plat in produit_plats %}
+            <tr>
+                <td>{{ produit_plat.idProduitplat }}</td>
+                <td>{{ produit_plat.idCategorie }}</td>
+                <td>{{ produit_plat.nomProduitplat }}</td>
+                <td>{{ produit_plat.prix }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('produit_plat_show', {'id_produitplat': produit_plat.getIdProduitPlat()}) }}">Afficher</a>
+                    <a class="btn btn-secondary" href="{{ path('produit_plat_edit', {'id_produitplat': produit_plat.getIdProduitPlat()}) }}">Modifier</a>
+                    {{ include('Back/produit_plat/_delete_form.html.twig' , {'button_label': 'Delete'}) }}
+
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+    <!-- /.card -->
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} New Employee {% endblock %}
+{% block body %}
+	<div class="row" style="margin-left:300px">
+		<div style="display: flex;align-items: center;justify-content: center;margin-top: 90px; padding: 15px;">
+
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Create new  Employee</h5>
+					
+
+
+					<!-- General Form Elements -->
+					{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+                   
+					<label for="inputText" class="col-sm-18 col-form-label">Employee name</label>
+					<div class="col-sm-18">
+						{{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
+
+					</div>
+					{{ form_errors(form.name,{'attr':{'class':'text-danger'}}) }}
+					
+				<label for="inputText" class="col-sm-18 col-form-label"> Company Name</label>
+				<div class="col-sm-18">
+					{{ form_widget(form.id_company,{'attr':{'class':'form-control'}}) }}
+
+				</div>
+				{{ form_errors(form.id_company,{'attr':{'class':'text-danger'}}) }}
+
+
+				<label for="inputText" class="col-sm-18 col-form-label"> Phone number</label>
+				<div class="col-sm-18">
+					{{ form_widget(form.phone_number,{'attr':{'class':'form-control'}}) }}
+
+				</div>
+				{{ form_errors(form.phone_number,{'attr':{'class':'text-danger'}}) }}
+
+			<label for="inputText" class="col-sm-18 col-form-label"> Email </label>
+			<div class="col-sm-18">
+				{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+
+			</div>
+			{{ form_errors(form.email,{'attr':{'class':'text-danger'}}) }}
+
+
+					<label for="inputText" class="col-sm-18 col-form-label"> Function</label>
+					<div class="col-sm-18">
+						{{ form_widget(form.fonction,{'attr':{'class':'form-control'}}) }}
+
+					</div>
+					{{ form_errors(form.fonction,{'attr':{'class':'text-danger'}}) }}
+
+
+					<label for="inputText" class="col-sm-18 col-form-label">Departement</label>
+					<div class="col-sm-18">
+						{{ form_widget(form.departement,{'attr':{'class':'form-control'}}) }}
+
+					</div>
+					{{ form_errors(form.departement,{'attr':{'class':'text-danger'}}) }}
+					<br/>
+                
+					<div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+						{{ form_widget(form.Create,{'attr':{'class':'btn btn-primary'}}) }}
+						
+					</div>
+
+					{{ form_end(form) }}
+					
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	
+
+
+
+{% endblock %}

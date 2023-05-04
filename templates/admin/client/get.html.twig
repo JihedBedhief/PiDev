@@ -1,0 +1,79 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Client index
+{% endblock %}
+
+{% block body %}
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}	
+	<div class="row" style="display: flex;align-items: center;margin-top: 150px;">
+
+		<div class="col-lg-6">
+
+			<div class="card1">
+				<div
+					class="card-body" style="padding:30px">
+					{# <a href="{{ path('app_client_new') }}">
+											<i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i>
+										</a> #}
+					<h5 class="card-title">Liste des Clients</h5>
+					<input type="search" id="myInput" class="form-control pl-6" placeholder="Search Client"/>
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+					<script>
+						$(document).ready(function () {
+						$("#myInput").on("keyup", function () {
+						var value = $(this).val().toLowerCase();
+						$("#myTable tr").filter(function () {
+						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+									});
+								})
+							});
+					</script>
+
+					<!-- Table with stripped rows -->
+					<div style="mmargin-left=200px">
+						<table class="table table-striped" id="myTable">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Telephone</th>
+									<th>Email</th>
+									<th>Ville</th>
+									<th>Code_postal</th>
+									<th>Cin</th>
+									<th>division</th>
+									<th>Date D'ajout</th>
+									<th>actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for client in clients %}
+									<tr>
+										<td>{{ client.name }}</td>
+										<td>{{ client.telephone }}</td>
+										<td>{{ client.email }}</td>
+										<td>{{ client.ville }}</td>
+										<td>{{ client.codePostal }}</td>
+										<td>{{ client.cin }}</td>
+										<td>{{ client.division }}</td>
+										<td>{{ client.DateAjout| date('Y-m-d')  }}</td>
+										{#  #}
+										<td>
+											<a class="btn btn-success" href="{{path('app_client_show_admin',{'id':client.id}) }}">show</a>
+										</td>
+									</tr>
+
+								{% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+					<!-- End small tables -->
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+{% endblock %}

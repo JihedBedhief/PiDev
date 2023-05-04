@@ -1,0 +1,32 @@
+{% extends "base-pdf.html.twig" %}
+
+{% block title %}Liste des données de {{user.nom}} {{user.domaine}}{% endblock %}
+{% block body %}
+
+<p>hellllo word</p>
+    <h1>Liste des données de {{user.nom}} {{user.domaine}}</h1>
+    <h2>Vos données</h2>
+    <table border=1>
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Domaine</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Matricule</th>
+            <th scope="col">Numero de telephone</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.domaine }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.matricule }}</td>
+            <td>{{ user.telephone }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

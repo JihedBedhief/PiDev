@@ -1,0 +1,104 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+<div class="form-group">
+
+        <div class="alert alert-warning"  style="display: {% if form.nom.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.nom) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.nom,'nom d utilisateur') }}
+        {{ form_widget(form.nom, {'attr': {'class': 'with-border','placeholder':'e.g. said '}}) }}
+
+</div>
+<div class="form-group">
+
+        <div class="alert alert-warning"  style="display: {% if form.prenom.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.prenom) }}
+            <a class="close" href="#"></a>
+        </div>
+    {{ form_label(form.prenom,'prenom d utilisateur ') }}
+        {{ form_widget(form.prenom, {'attr': {'class': 'with-border','placeholder':'e.g. eya'}}) }}
+</div>
+<div class="form-group">
+    <div class="alert alert-warning"  style="display: {% if form.date.vars.errors|length %} {% else %} none {% endif %}  ">
+        {{ form_errors(form.date) }}
+        <a class="close" href="#"></a>
+    </div>
+   {{form_label(form.date,"Date de naissance")  }}
+      {{form_widget(form.date) }}
+
+</div>
+<div class="form-group">
+    <div class="alert alert-warning"  style="display: {% if form.sexe.vars.errors|length %} {% else %} none {% endif %}  ">
+        {{ form_errors(form.sexe) }}
+        <a class="close" href="#"></a>
+    </div>
+    {{ form_label(form.sexe,'user sexe') }}
+    {{ form_widget(form.sexe, {'attr': {'class': 'with-border','placeholder':'e.g. '}}) }}
+
+</div>
+<div class="form-group">
+    <div class="alert alert-warning"  style="display: {% if form.numero_tele.vars.errors|length %} {% else %} none {% endif %}  ">
+        {{ form_errors(form.numero_tele) }}
+        <a class="close" href="#"></a>
+    </div>
+    {{ form_label(form.numero_tele,'user numero de telephone') }}
+    {{ form_widget(form.numero_tele, {'attr': {'class': 'with-border','placeholder':'e.g. 22222222'}}) }}
+
+</div>
+<div class="form-group">
+    <div class="alert alert-warning"  style="display: {% if form.email.vars.errors|length %} {% else %} none {% endif %}  ">
+        {{ form_errors(form.email) }}
+        <a class="close" href="#"></a>
+    </div>
+    {{ form_label(form.email,'user email') }}
+    {{ form_widget(form.email, {'attr': {'class': 'with-border','placeholder':'e.g. ***@***.com'}}) }}
+
+</div>
+<div class="form-group">
+    <div class="submit-field">
+        <div class="alert alert-warning"  style="display: {% if form.roles.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.roles) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.roles,'user roles') }}
+        {{ form_widget(form.roles,{'attr':{'title':'Select your role'}}) }}
+    </div>
+
+</div>
+<div class="form-group">
+
+    <div class="alert alert-warning"  style="display: {% if form.address.vars.errors|length %} {% else %} none {% endif %}  ">
+        {{ form_errors(form.address) }}
+        <a class="close" href="#"></a>
+    </div>
+    {{ form_label(form.address,'Address d utilisateur') }}
+    {{ form_widget(form.address, {'attr': {'class': 'with-border','placeholder':'e.g. said '}}) }}
+
+</div>
+<div class="form-group">
+    <div class="submit-field">
+        <div class="alert alert-warning"  style="display: {% if form.password.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.password) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.password,' ') }}
+        {{ form_widget(form.password,{'attr':{'title':'enter your password'}}) }}
+    </div>
+
+</div>
+
+<div class="form-group">
+    <div class="submit-field">
+        <div class="alert alert-warning"  style="display: {% if form.image.vars.errors|length %} {% else %} none {% endif %}  ">
+            {{ form_errors(form.image) }}
+            <a class="close" href="#"></a>
+        </div>
+        {{ form_label(form.image,' ') }}
+        {{ form_widget(form.image,{'attr':{'title':'télécharger votre image'}}) }}
+    </div>
+
+</div>
+
+
+    <button  class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,30 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}OffreTravail{% endblock %}
+
+{% block bodyBack %}
+    <h1>OffreTravail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offre_travail.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ offre_travail.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ offre_travail.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('offre_travail_index') }}">back to list</a>
+
+    <a href="{{ path('offre_travail_edit', {'id': offre_travail.id}) }}">edit</a>
+
+    {{ include('Back/offre_travail/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Admin
+{% endblock %}
+
+{% block body %}
+	<h1>Division</h1>
+	<center>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Type</th>
+					<td>{{ division.type }}</td>
+				</tr>
+				<tr>
+					<th>Taux_remise</th>
+					<td>{{ division.tauxRemise }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn btn-success" href="{{ path('app_division_index_admin') }}">back to list</a>
+
+		{# {{ include('division/_delete_form.html.twig') }} #}
+	</center>
+{% endblock %}

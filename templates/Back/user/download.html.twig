@@ -1,0 +1,33 @@
+{% extends "base-pdf.html.twig" %}
+
+{% block title %}Liste des données de {{app.user.nom}} {{app.user.prenom}}{% endblock %}
+{% block body %}
+
+<p>hellllo word</p>
+    <h1>Liste des données de {{app.user.nom}} {{app.user.prenom}}</h1>
+    <h2>Vos données</h2>
+    <table border=1>
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Date de naissance</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ app.user.nom }}</td>
+            <td>{{ app.user.prenom }}</td>
+            <td>{{ app.user.email }}</td>
+            <td>{{ app.user.date|date('Y-m-d') }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Vos images</h2>
+        <h3>{{ app.user.nom }}</h3>
+            {{ absolute_url(asset('upload/img/' ~ app.user.image)) }}
+
+{% endblock %}

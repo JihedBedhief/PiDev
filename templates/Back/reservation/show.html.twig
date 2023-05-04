@@ -1,0 +1,50 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block bodyBack %}
+<h1>Reservation</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Table Reservation</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+
+                </div>
+            </div>
+        <tbody>
+            <tr>
+                <th>Id_reservation</th>
+                <td>{{ reservation.idReservation }}</td>
+            </tr>
+            <tr>
+                <th>Id_restaurant</th>
+                <td>{{ reservation.idRestaurant }}</td>
+            </tr>
+            <tr>
+                <th>Id_client</th>
+                <td>{{ reservation.idClient }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ reservation.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Date_reservation</th>
+                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <div class="col-md-12 text-center">
+        <a class="btn btn-outline-dark" href="{{ path('reservation_index') }}">Liste des reservations</a>
+    </div>
+{% endblock %}

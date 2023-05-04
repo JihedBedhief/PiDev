@@ -1,0 +1,29 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit OffreTravail{% endblock %}
+
+
+{% block bodyBack %}
+    <section class="content" style="margin-left: 20%">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3>Create new OffreTravail</h3>
+                        </div>
+                        <div class="card-body">
+                            {{ include('Back/offre_travail/_form.html.twig', {'button_label': 'Update'}) }}
+                            {{ include('Back/offre_travail/_delete_form.html.twig') }}
+
+                        </div>
+                        <a class="btn btn-primary" href="{{ path('offre_travail_index') }}">back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

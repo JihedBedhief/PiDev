@@ -1,0 +1,61 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}PointVente index{% endblock %}
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    
+    <div class="col-lg-6">
+
+        <div class="card2">
+            <div class="card-body">
+                <a href="{{ path('get_admin_pointvente') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title">Liste des points de vente</h5>
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>     
+                        <th>Nom</th>
+                        <th>Region</th>
+                        <th>Ville</th>
+                        <th>Code Postal</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for pointvente in point_ventes  %}
+                        <tr>
+                            
+                            <td>{{ pointvente.name }}</td>
+                            <td>{{ pointvente.region }}</td>
+                            <td>{{ pointvente.ville}}</td>
+                            <td>{{ pointvente.codePostal }}</td>
+                            <td>{{ pointvente.telephone }}</td>
+                            <td>{{ pointvente.email }}</td>
+                            
+                           
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('app_point_vente_delete_admin', {'id': pointvente.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

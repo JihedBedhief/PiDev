@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+<div class="booking">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate', 'class':'booking-form'}}) }}
+
+    <div class="control-group">
+        {{ form_label(form.nombre,"Le nombre de place à reserver") }}
+       <h5 class="text-danger"> {{ form_errors(form.nombre) }}</h5>
+        <div class="input-group">
+        {{ form_widget(form.nombre,{'attr': {'class': 'form-control'}}) }}
+            <div >
+                <div class="input-group-text"><i class="far fa-user"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-group">
+        {{ form_label(form.date_reservation,"la date de reservation") }}
+        <h5 class="text-danger"> {{ form_errors(form.date_reservation) }}</h5>
+
+        <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+            <script>
+                jQuery(document).ready(function() {
+                    $('.js-datepicker').datepicker();
+                    format: 'yyyy-mm-dd'
+                });
+            </script>
+                {{ form_widget(form.date_reservation ,{'attr': {'class': 'input-group date'}}) }}
+            </div>
+
+    </div>
+    <div class="control-group">
+
+        {{ form_label(form.restaurants,"Nom du restaurant") }}
+        {{ form_errors(form.restaurants) }}
+        <div class="input-group" >
+            {{ form_widget(form.restaurants ,{'attr': {'class': 'custom-select form-control-input-gray-dark'}}) }}
+
+            <div class="input-group-append ">
+                <div class="input-group-text"><i class="fa fa-chevron-down"></i></div>
+            </div>
+        </div>
+    </div>
+
+        <div class="input-group">
+        <button class="btn custom-btn">{{ button_label|default('Réserver') }}</button>
+        </div>
+
+
+    {{ form_end(form) }}
+</div>

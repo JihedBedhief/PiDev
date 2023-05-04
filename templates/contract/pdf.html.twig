@@ -1,0 +1,114 @@
+{% block body %}
+<style>
+    /* Define some base styles */
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Customize some styles for this specific layout */
+
+.container {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+table {
+  margin-bottom: 40px;
+  
+  
+}
+
+th:first-child {
+  width: 200px;
+}
+
+td:first-child {
+  text-transform: capitalize;
+}
+
+td:last-child {
+  font-weight: bold;
+}
+
+.card-title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+</style>
+
+
+<div class="container">
+<div class="row">
+  <div class="col-md-8 mx-auto">
+      <div class="card-body">
+        <h5 class="card-title">Contract Details</h5>
+
+
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Employee Name</th>
+              <td>{{ contract.employer }}</td>
+            </tr>
+            <tr>
+              <th>Employee Function</th>
+              <td>{{ contract.employer.fonction }}</td>
+            </tr>
+            <tr>
+            <th>Departement</th>
+            <td>{{ contract.employer.departement }}</td>
+          </tr>
+            <tr>
+              <th>Type</th>
+              <td>{{ contract.type }}</td>
+            </tr>
+            <tr>
+              <th>Duration</th>
+              <td>{{ contract.duration }}</td>
+            </tr>
+            <tr>
+              <th>Salary</th>
+              <td>{{ contract.salary }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

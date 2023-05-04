@@ -1,0 +1,68 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Admin 
+{% endblock %}
+
+{% block body %}
+
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+	<div class="row" style="display: flex;align-items: center;margin-top: 150px;">
+
+		<div class="col-lg-6">
+
+			<div class="card1" >
+				<div class="card-body" style="padding:30px">
+					{# <a href="{{ path('app_client_new') }}">
+						<i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i>
+					</a> #}
+					<h5 class="card-title">Liste des Divisions</h5>
+					<input type="search" id="myInput" class="form-control pl-6" placeholder="Search Client"/>
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+					<script>
+						$(document).ready(function () {
+						$("#myInput").on("keyup", function () {
+						var value = $(this).val().toLowerCase();
+						$("#myTable tr").filter(function () {
+						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+									});
+								})
+							});
+					</script>
+
+					<!-- Table with stripped rows -->
+                    <div style="mmargin-left=200px">
+					<table class="table table-striped" id="myTable">
+						<thead>
+							<tr>
+								<th>type</th>
+								<th>taux_remise</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for division in divisions %}
+								<tr>
+									<td>{{ division.type }}</td>
+									<td>{{ division.tauxRemise }}</td>
+									{# <td>
+										<a class="btn btn-danger" href="{{ path('app_division_delete_admin',{'id':division.id}) }}">delete</a>
+									</td> #}
+									<td>
+										<a class="btn btn-success" href="{{ path('app_division_show_admin',{'id':division.id}) }}">show</a>
+									</td>
+								</tr>
+
+							{% endfor %}
+
+						</tbody>
+					</table>
+                    </div>
+					<!-- End small tables -->
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+{% endblock %}
