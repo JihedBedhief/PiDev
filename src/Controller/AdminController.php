@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\Contract;
-use App\Entity\Rh;
-use App\Repository\ContractRepository;
-use App\Repository\RhRepository;
+use App\Entity\Employees;
+use App\Entity\Contrat;
+use App\Repository\ContratRepository;
+use App\Repository\EmployeesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/adm")
+ */
 class AdminController extends AbstractController
 {
      /**
@@ -21,64 +24,59 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
 
-     /**
+    /**
      * @Route("/admin/rhall", name="index_all", methods={"GET"})
      */
-    public function indexRh(RhRepository $rhRepository): Response
+    public function indexRh(EmployeesRepository $rhRepository): Response
     {
         return $this->render('admin/all.html.twig', [
             'rhs' => $rhRepository->findAll(),
         ]);
     }
 
-    /**
-     * @Route("/admin/allContract", name="contract_all", methods={"GET"})
-     */
-    public function indexContract(ContractRepository $contractRepository): Response
-    {
-        return $this->render('admin/allcontract.html.twig', [
-            'contracts' => $contractRepository->findAll(),
-        ]);
-    }
-
      /**
      * @Route("/admin/{id}", name="app_adminrh_show", methods={"GET"})
      */
-    public function show(Rh $rh): Response
+    public function show(Employees $rh): Response
     {
         return $this->render('admin/showrh.html.twig', [
             'rh' => $rh,
         ]);
     }
+
     /**
      * @Route("/admin/{id}", name="app_adminrh_delete", methods={"POST"})
      */
-   public function delete(Request $request, Rh $rh, RhRepository $rhRepository): Response
-   {
-       if ($this->isCsrfTokenValid('delete'.$rh->getId(), $request->request->get('_token'))) {
-           $rhRepository->remove($rh, true);
-       }
+    public function delete(Request $request, Employees $employee, EmployeesRepository $employeesRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$employee->getId(), $request->request->get('_token'))) {
+            $employeesRepository->remove($employee, true);
+        }
 
-       return $this->redirectToRoute('index_all', [], Response::HTTP_SEE_OTHER);
-   }
-    /**
+        return $this->redirectToRoute('app_employees_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+     /**
      * @Route("/admin/{id}", name="app_admcontract_show", methods={"GET"})
      */
-    public function showcontract(Contract $contract): Response
+    public function showcontract(Contrat $contrat): Response
     {
         return $this->render('admin/showcnt.html.twig', [
-            'contract' => $contract,
+            'contract' => $contrat,
         ]);
     }
+
     /**
      * @Route("/admin/{id}", name="app_admcontract_delete", methods={"POST"})
      */
-    public function deleteContract(Request $request, Contract $contract, ContractRepository $contractRepository): Response
+    public function deleteC(Request $request, Contrat $contrat, ContratRepository $contratRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$contract->getId(), $request->request->get('_token'))) {
-            $contractRepository->remove($contract, true);
+        if ($this->isCsrfTokenValid('delete'.$contrat->getId(), $request->request->get('_token'))) {
+            $contratRepository->remove($contrat, true);
         }
 
-        return $this->redirectToRoute('contract_all', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_contrat_index', [], Response::HTTP_SEE_OTHER);
     }
+       
+
 }

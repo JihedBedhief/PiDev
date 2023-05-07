@@ -7,21 +7,21 @@
     <table  class="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Function</th>
+          <th>Cin</th>
+          <th>Nom</th>
+          <th>Prenom</th>
           <th>Email</th>
-          <th>Phone Number</th>
-          <th>Departement</th>
+          <th>Num de Tlf</th>
         </tr>
       </thead>
       <tbody>
         {% for employee in filtre %}
           <tr>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.fonction }}</td>
+            <td>{{ employee.cin }}</td>
+            <td>{{ employee.nom }}</td>
+            <td>{{ employee.prenom }}</td>
             <td>{{ employee.email }}</td>
-            <td>{{ employee.phone_number }}</td>
-            <td>{{ employee.departement }}</td>
+            <td>{{ employee.phoneNum }}</td>
           </tr>
         {% endfor %}
       </tbody>

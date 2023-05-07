@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Contract;
+use App\Entity\Contrat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Contract>
+ * @extends ServiceEntityRepository<Contrat>
  *
- * @method Contract|null find($id, $lockMode = null, $lockVersion = null)
- * @method Contract|null findOneBy(array $criteria, array $orderBy = null)
- * @method Contract[]    findAll()
- * @method Contract[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Contrat|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Contrat|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Contrat[]    findAll()
+ * @method Contrat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ContractRepository extends ServiceEntityRepository
+class ContratRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Contract::class);
+        parent::__construct($registry, Contrat::class);
     }
 
-    public function add(Contract $entity, bool $flush = false): void
+    public function add(Contrat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ContractRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Contract $entity, bool $flush = false): void
+    public function remove(Contrat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ContractRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Contract[] Returns an array of Contract objects
+//     * @return Contrat[] Returns an array of Contrat objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ContractRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Contract
+//    public function findOneBySomeField($value): ?Contrat
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

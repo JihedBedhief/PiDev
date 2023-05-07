@@ -146,14 +146,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Rh::class, mappedBy="id_company")
-     */
-    private $rhs;
+ 
+
+
 
     public function __construct()
     {
         $this->rhs = new ArrayCollection();
+        $this->employees = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -376,34 +376,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Rh>
      */
-    public function getRhs(): Collection
+
+    public function __toString(){
+        return  $this->nom; 
+      }
+
+    /**
+     * @return Collection<int, Employees>
+     */
+    public function getEmployees(): Collection
     {
-        return $this->rhs;
+        return $this->employees;
     }
 
-    public function addRh(Rh $rh): self
+    public function addEmployee(Employees $employee): self
     {
-        if (!$this->rhs->contains($rh)) {
-            $this->rhs[] = $rh;
-            $rh->setIdCompany($this);
+        if (!$this->employees->contains($employee)) {
+            $this->employees[] = $employee;
+            $employee->setIdComp($this);
         }
 
         return $this;
     }
 
-    public function removeRh(Rh $rh): self
+    public function removeEmployee(Employees $employee): self
     {
-        if ($this->rhs->removeElement($rh)) {
+        if ($this->employees->removeElement($employee)) {
             // set the owning side to null (unless already changed)
-            if ($rh->getIdCompany() === $this) {
-                $rh->setIdCompany(null);
+            if ($employee->getIdComp() === $this) {
+                $employee->setIdComp(null);
             }
         }
 
         return $this;
     }
-
-    public function __toString(){
-        return  $this->nom; 
-      }
 }

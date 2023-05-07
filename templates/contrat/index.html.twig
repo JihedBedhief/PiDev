@@ -1,0 +1,138 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Salaire</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.type }}</td>
+                <td>{{ contrat.salaire }}</td>
+                <td>{{ contrat.datedebut ? contrat.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat.datefin ? contrat.datefin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_contrat_show', {'id': contrat.id}) }}">show</a>
+                    <a href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_new') }}">Create new</a>
+{% endblock %} #}
+
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_employees_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+               
+                <h5 class="card-title"> Contracts</h5>
+               
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>   
+                      
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Salaire</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>actions</th>
+           
+                
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contrat in contrats %}
+                        <tr>
+                           
+                 <td>{{ contrat.emp }}</td>
+                <td>{{ contrat.type }}</td>
+                <td>{{ contrat.salaire }}</td>
+                <td>{{ contrat.datedebut ? contrat.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ contrat.datefin ? contrat.datefin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_contrat_show', {'id': contrat.id}) }}">show</a>
+                    <a href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">edit</a>
+                </td>
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                {# <!-- End small tables -->
+                {% if pagesCount > 1 %}
+                <nav aria-label="Page navigation example" style="margin-top: 20px;">
+                    <ul class="pagination justify-content-center">
+                        {% if previousPage is not null %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_contract_index', {'page': previousPage}) }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for page in 1..pagesCount %}
+                            <li class="page-item{% if currentPage == page %} active{% endif %}">
+                                <a class="page-link" href="{{ path('app_contract_index', {'page': page}) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if nextPage is not null %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ path('app_contract_index', {'page': nextPage}) }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}  #}
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+ 
+
+</div>
+{#{% block add %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 50px;">
+<a class="btn btn-success" href="{{ path('app_contract_new') }}" style="margin-left:2%">Show</a>
+</div>
+{% endblock %}#}
+{% endblock %}

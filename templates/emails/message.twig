@@ -38,33 +38,30 @@
 </head>
 <body>
     <img src="{{asset('rh.jpg')}}" alt="">
-<h2>Contract Details  :{{ contract.employer }}</h2>
+<h2>Contract Details  :{{ contract.emp.nom }}</h2>
 	<table>
 		<tbody>
 			<tr>
-				<th>Employee name</th>
-				<td>{{ contract.employer }}</td>
+				<th>Nom</th>
+				<td>{{ contract.emp.nom }}</td>
 			</tr>
 			<tr>
-				<th>Employee function</th>
-				<td>{{ contract.employer.fonction }}</td>
+				<th>Type</th>
+				<td>{{ contract.type }}</td>
 			</tr>				
 			<tr>
 				<tr>
-				<th>Your departement</th>
-				<td>{{ contract.employer.departement }}</td>
+				<th>Salaire</th>
+				<td>{{ contract.salaire }}</td>
 			</tr>	
-				<th>Type</th>
-				<td>{{ contract.type }}</td>
+				<th>Date debut</th>
+				<td>{{ contract.datedebut ? contract.datedebut|date('Y-m-d') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Duration</th>
-				<td>{{ contract.duration }}</td>
+				<th>Date Fin</th>
+				<td>{{ contract.datefin ? contract.datefin|date('Y-m-d') : '' }}</td>
 			</tr>
-			<tr>
-				<th>Salary</th>
-				<td>{{ contract.salary }} DT</td>
-			</tr>
+			
 		</tbody>
 	</table>
 </body>

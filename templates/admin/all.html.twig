@@ -1,54 +1,11 @@
-{% extends 'base1.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-<table class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 30px;">
-    <thead>
-        <tr>
-            <th><a class="sidebar-menu-button"
-                href="{{ path('adminn_search') }}">
-                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
-                    <span class="sidebar-menu-text">Search by Id</span>
-                </a></th>
-            <th><a class="sidebar-menu-button"
-                href="{{ path('countnbr') }}">
-                    <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
-                    <span class="sidebar-menu-text">Count by Id</span>
-                </a></th>
-
-                <th>
-                    <a class="sidebar-menu-button"
-                    href="{{ path('filtre') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
-                        <span class="sidebar-menu-text">Filter By Dept</span>
-                    </a></th>
-        </tr>
-    </thead>
-</table>
-<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 40px;">
-    <form class="d-flex align-items-center col-12 col-md-8 col-lg-3" id="rech">
-                  <span class="position-absolute pl-3 search-icon">
-                    <i class="fe fe-search"></i>
-                  </span>
-                  <input type="search" id="myInput" class="form-control pl-6" placeholder="Search Employee" />
-                </form>
-                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-              <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-</div>
-<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 60px;">
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <a href="{{ path('index_admin') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
-                
                 
                 <h5 class="card-title">Employees</h5>
                 <!-- Table with stripped rows -->
@@ -56,18 +13,20 @@ $(document).ready(function(){
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Employee name</th>
-                            <th>Function</th>
-                            <th>Department</th>
+                            <th>Nom </th>
+                            <th>prenom</th>
+                            <th>cin</th>
+                            <th>email</th>
                             <th colspan="2">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="myTable">
+                    <tbody>
                         {% for employer in rhs %}
                             <tr>
-                                <td>{{ employer.name }}</td>
-                                <td>{{ employer.fonction }}</td>
-                                <td>{{ employer.departement }}</td>
+                                <td>{{ employer.nom }}</td>
+                                <td>{{ employer.prenom }}</td>
+                                <td>{{ employer.cin }}</td>
+                                <td>{{ employer.email }}</td>
                                 <td>
                                     <a class="btn btn-success" href="{{ path('app_adminrh_show',{'id':employer.id}) }}">View details</a>
                                 </td>

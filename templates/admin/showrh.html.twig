@@ -1,6 +1,6 @@
 
 
-{% extends 'base1.html.twig' %}
+{% extends 'base.html.twig' %}
 
 
 {% block body %}
@@ -21,35 +21,27 @@
         <tbody>
            
             <tr>
-                <th>Name</th>
-                <td>{{ rh.name }}</td>
+                <th>Nom</th>
+                <td>{{ rh.nom }}</td>
             </tr>
             <tr>
-                <th>Phone number</th>
-                <td>{{ rh.phonenumber }}</td>
+                <th>Prenom</th>
+                <td>{{ rh.prenom }}</td>
             </tr>
             <tr>
-               <th>Email</th>
-               <td>{{ rh.email }}</td>
+               <th>Cin</th>
+               <td>{{ rh.cin }}</td>
             </tr>
             <tr>
-                <th>Fonction</th>
-                <td>{{ rh.fonction }}</td>
+                <th>Email</th>
+                <td>{{ rh.email }}</td>
             </tr>
             <tr>
-                <th>Departement</th>
-                <td>{{ rh.departement }}</td>
+                <th>Numero de Tlf</th>
+                <td>{{ rh.phoneNum }}</td>
             </tr>
          
-          {#}  <tr>
-                <th>Contract type</th>
-                <td>{{ rh.contract.type }}</td>
-            </tr>
-            <tr>
-                <th>Contract duration</th>
-                <td>{{ rh.contract.duration }} years</td>
-            </tr>#}
-        
+         
         </tbody>
     </table>
 

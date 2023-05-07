@@ -1,0 +1,130 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Employees{% endblock %}
+
+{% block body %}
+    <h1>Employees</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ employee.id }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ employee.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ employee.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ employee.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ employee.email }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNum</th>
+                <td>{{ employee.phoneNum }}</td>
+            </tr>
+            <tr>
+                <th>IdComp</th>
+                <td>{{ employee.idComp }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_employees_index') }}">back to list</a>
+
+    <a href="{{ path('app_employees_edit', {'id': employee.id}) }}">edit</a>
+
+    {{ include('employees/_delete_form.html.twig') }}
+{% endblock %} #}
+
+
+
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('app_employees_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                <h5 class="card-title"> Employee Detail</h5>
+
+                
+
+
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Cin</th>
+                <td>{{ employee.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ employee.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ employee.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ employee.email }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNum</th>
+                <td>{{ employee.phoneNum }}</td>
+            </tr>
+            <tr>
+                <th>IdComp</th>
+                <td>{{ employee.idComp }}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+    <div class="row mt-3">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="d-grid">
+    <a class="btn btn-danger">
+      {{ include('employees/_delete_form.html.twig') }}
+    </a>
+  </div>
+  
+    </div>
+    <div class="col-sm-6  ">
+      <div class="d-grid">
+        <a href="{{ path('app_employees_index') }}" class="btn btn-success">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+ 
+    
+
+              <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
+
+
+

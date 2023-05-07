@@ -1,4 +1,4 @@
-{% extends 'base1.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 <div >
@@ -15,21 +15,21 @@
     <table  class="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Function</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Cin</th>
           <th>Email</th>
-          <th>Phone Number</th>
-          <th>Department</th>
+          <th>Num de Tlf</th>
         </tr>
       </thead>
       <tbody>
         {% for employee in employees %}
           <tr>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.fonction }}</td>
+            <td>{{ employee.nom }}</td>
+            <td>{{ employee.prenom }}</td>
+            <td>{{ employee.cin }}</td>
             <td>{{ employee.email }}</td>
-            <td>{{ employee.phone_number }}</td>
-            <td>{{ employee.departement }}</td>
+            <td>{{ employee.phoneNum }}</td>
           </tr>
         {% endfor %}
       </tbody>

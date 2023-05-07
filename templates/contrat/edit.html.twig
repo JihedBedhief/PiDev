@@ -1,0 +1,73 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Edit Contrat{% endblock %}
+
+{% block body %}
+    <h1>Edit Contrat</h1>
+
+    {{ include('contrat/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_contrat_index') }}">back to list</a>
+
+    {{ include('contrat/_delete_form.html.twig') }}
+{% endblock %} #}
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Update Contract</h5>
+
+                    <!-- General Form Elements -->
+                    {{ form_start(form) }}
+                    <label for="inputText" class="col-sm-4 col-form-label">employe</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.emp,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <label for="inputText" class="col-sm-4 col-form-label"> Type</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
+                    </div>
+
+
+                    <label for="inputText" class="col-sm-4 col-form-label">Salaire</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.salaire,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                    <label for="inputText" class="col-sm-4 col-form-label">Date debut</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.datedebut,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                    <label for="inputText" class="col-sm-4 col-form-label">Date fin</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.datefin,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                    
+
+                    <br/>
+                    <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+                        {{ form_widget(form.Create,{'attr':{'class':'btn btn-primary'}}) }}
+                    </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+     <a href="{{ path('app_contrat_index') }}">back to list</a>
+
+    {{ include('contrat/_delete_form.html.twig') }}
+{% endblock %}
