@@ -79,6 +79,6 @@ public function findDivisionsByName($type)
         ->andWhere('d.type LIKE :type')
         ->setParameter('type', '%'.$type.'%');
 
-    return $qb->getQuery()->getResult();
+    return $qb->getQuery()->getSingleResult();
 }
 }

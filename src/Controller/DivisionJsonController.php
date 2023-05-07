@@ -31,7 +31,7 @@ class DivisionJsonController extends AbstractController
     #[Route('/searchByname', name:'searchByname')]
     public function search(DivisionRepository $cat, NormalizerInterface $normalizer ,Request $request): Response
     {
-        $type=$request->get("type");
+        $type=$request->get("type");    
         $categorie = $cat->findDivisionsByName($type);
         $js = $normalizer->normalize($categorie, 'json', ['groups' => 'div']);
         return new Response(json_encode($js));
