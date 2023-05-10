@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Vente;
 use App\Form\VenteType;
+use Dompdf\Dompdf as Dompdf;
+use App\Repository\UserRepository;
 use App\Repository\VenteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Dompdf\Dompdf as Dompdf;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
 
 /**
  * @Route("/vente")
@@ -19,10 +23,12 @@ class VenteController extends AbstractController
     /**
      * @Route("/", name="app_vente_index", methods={"GET"})
      */
-    public function index(VenteRepository $venteRepository): Response
+    public function index(VenteRepository $venteRepository,UserRepository $usser,Security $security): Response
     {
+        $userId = $security->getUser();
+        $usr=$usser->find($userId);
         return $this->render('vente/index.html.twig', [
-            'ventes' => $venteRepository->findAll(),
+            'ventes' => $venteRepository->getVenteByUserId($usr->getId()),
         ]);
     }
     /**

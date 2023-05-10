@@ -4,25 +4,27 @@ namespace App\Controller;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Client;
 use App\Form\ClientType;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Mailer\Mailer;
+use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
+use Symfony\Component\Mailer\Mailer;
 use App\Repository\DivisionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\DependencyInjection\Loader\Configurator;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
-use Symfony\Component\DependencyInjection\Loader\Configurator;
 
 
 
@@ -34,14 +36,17 @@ class ClientController extends AbstractController
     /**
      * @Route("/", name="app_client_index", methods={"GET"})
      */
-    public function index(ClientRepository $clientRepository, DivisionRepository $DivisionRepository, Request $request,FlashyNotifier $flashy): Response
+    public function index(UserRepository $usser,ClientRepository $clientRepository,Security $security, DivisionRepository $DivisionRepository, Request $request,FlashyNotifier $flashy): Response
     {
 
         $flashy->info('Welcome User');
         $divisions = $DivisionRepository->findAll();
         $filters = $request->get("divisions");
-        $clients = $clientRepository->filterwithdiv($filters);
-        $total = $clientRepository->TotalClients($filters);
+        $userId = $security->getUser();
+        $usr=$usser->find($userId);
+        
+        $clients = $clientRepository->filterwithdiv($filters,$usr->getId());
+        $total = $clientRepository->TotalClients($filters,$usr->getId());
 
         if ($request->get('ajax')) {
             return new JsonResponse([

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployeesRepository;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmployeesRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -50,9 +51,10 @@ class Employees
     private $phoneNum;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="employees")
+     * @ORM\ManyToOne(targetEntity=User::class)
      */
     private $idComp;
+
 
 
 
@@ -121,23 +123,25 @@ class Employees
         return $this;
     }
 
-    public function getIdComp(): ?int
-    {
-        return $this->idComp;
-    }
 
-    public function setIdComp(int $idComp): self
-    {
-        $this->idComp = $idComp;
-
-        return $this;
-    }
 
 
 
 public function __toString()
 {
     return $this->getNom();
+}
+
+public function getIdComp(): ?User
+{
+    return $this->idComp;
+}
+
+public function setIdComp(?User $idComp): self
+{
+    $this->idComp = $idComp;
+
+    return $this;
 }
 
 }

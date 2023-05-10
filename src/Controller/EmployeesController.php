@@ -5,14 +5,16 @@ namespace App\Controller;
 use App\Entity\Employees;
 use App\Form\EmployeesType;
 use App\Form\RechercheType;
+use App\Repository\UserRepository;
 use App\Repository\EmployeesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/employees")
@@ -23,10 +25,12 @@ class EmployeesController extends AbstractController
     /**
      * @Route("/", name="app_employees_index", methods={"GET"})
      */
-    public function index(EmployeesRepository $contratRepository): Response
+    public function index(EmployeesRepository $contratRepository,UserRepository $usser,Security $security): Response
     {
+        $userId = $security->getUser();
+        $usr=$usser->find($userId);
         return $this->render('employees/index.html.twig', [
-            'employees' => $contratRepository->findAll(),
+            'employees' => $contratRepository->getEmployeesByUserId($usr->getId()),
         ]);
     }
 
@@ -67,23 +71,45 @@ class EmployeesController extends AbstractController
     /**
      * @Route("/new", name="app_employees_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EmployeesRepository $employeesRepository): Response
-    {
-        $employee = new Employees();
-        $form = $this->createForm(EmployeesType::class, $employee);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $employeesRepository->add($employee, true);
-
-            return $this->redirectToRoute('app_contrat_new', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('employees/new.html.twig', [
-            'employee' => $employee,
-            'form' => $form,
-        ]);
+    public function new(Request $request, UserRepository $usr, Security $security, EmployeesRepository $employeesRepository): Response
+{
+    $employee = new Employees();
+    $form = $this->createForm(EmployeesType::class, $employee);
+    $form->handleRequest($request);
+    
+    if ($form->isSubmitted() && $form->isValid()) {
+        // $user = $security->getUser();
+        // $employee->setIdComp($user->getId());
+        
+        $employeesRepository->add($employee, true);
+        
+        return $this->redirectToRoute('app_contrat_new', [], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->renderForm('employees/new.html.twig', [
+        'employee' => $employee,
+        'form' => $form,
+    ]);
+}
+
+    // public function new(Request $request, UserRepository $usr,Security $security,EmployeesRepository $employeesRepository): Response
+    // {
+    //     $employee = new Employees();
+    //     $form = $this->createForm(EmployeesType::class, $employee);
+    //     $form->handleRequest($request);
+    //      $userId = $security->getUser()->getId();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $employeesRepository->add($employee, true);
+    //         // $useer=$usr->find($userId);
+    //          $employee->setIdComp($useer);
+    //         return $this->redirectToRoute('app_contrat_new', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->renderForm('employees/new.html.twig', [
+    //         'employee' => $employee,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}", name="app_employees_show", methods={"GET"})

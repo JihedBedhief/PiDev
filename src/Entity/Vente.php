@@ -82,26 +82,23 @@ class Vente
     private $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="ventes",cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Produit::class)
      */
-    private ?Product $produit;
+    private $Produit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $User;
+
+   
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProduit(): ?Product
-    {
-        return $this->produit;
-    }
 
-    public function setProduit(?Product $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
-    }
 
     public function getQuantite(): ?int
     {
@@ -185,6 +182,30 @@ class Vente
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->Produit;
+    }
+
+    public function setProduit(?Produit $Produit): self
+    {
+        $this->Produit = $Produit;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

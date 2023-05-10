@@ -58,10 +58,6 @@ class PointVenteController extends AbstractController
             $email = (new Email())
             ->from('anas.basta2023@gmail.com')
             ->to($pointVente->getEmail())
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
             ->subject('Point de vente')
             ->text($pointVente->getName().' Votre point de vente ajoutée avec succées, email envoyé !');
     
@@ -77,7 +73,7 @@ class PointVenteController extends AbstractController
 
       
 
-        return $this->renderForm('point_vente/new.html.twig', [
+        return $this->renderForm('pointvente/new.html.twig', [
             'point_vente' => $pointVente,
             'f' => $form,
         ]);
@@ -89,7 +85,7 @@ class PointVenteController extends AbstractController
     public function show(PointVente $pointVente): Response
     {
         
-        return $this->render('point_vente/show.html.twig', [
+        return $this->render('pointvente/show.html.twig', [
             'point_vente' => $pointVente,
         ]);
     }
@@ -118,7 +114,7 @@ class PointVenteController extends AbstractController
             return $this->redirectToRoute('app_point_vente_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('point_vente/edit.html.twig', [
+        return $this->renderForm('pointvente/edit.html.twig', [
             'point_vente' => $pointVente,
             'f' => $form,
         ]);

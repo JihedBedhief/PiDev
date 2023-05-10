@@ -40,32 +40,62 @@ class ClientRepository extends ServiceEntityRepository
     }
 
 
-    public function filterwithdiv($filters=null){
+    // public function filterwithdiv($filters=null){
+    //     $qb = $this->createQueryBuilder('c');
+    //     if($filters!=null){
+    //         $qb
+    //         ->Where('c.division IN(:divs)')
+    //         ->setParameter(':divs', array_values($filters));
+    //     }
+    //     else{
+    //         $qb->select('c');
+    //     }
+    //     return $qb->getQuery()->getResult();
+  
+  
+    //   }
+
+    public function filterwithdiv($filters=null, $userId=null){
         $qb = $this->createQueryBuilder('c');
         if($filters!=null){
             $qb
             ->Where('c.division IN(:divs)')
             ->setParameter(':divs', array_values($filters));
         }
-        else{
-            $qb->select('c');
+        if($userId!=null){
+            $qb
+            ->andWhere('c.User = :user_id')
+            ->setParameter(':user_id', $userId);
         }
         return $qb->getQuery()->getResult();
+    }
+    //   public function TotalClients($filters=null){ 
+    //     $qb = $this->createQueryBuilder('c')
+    //     ->select('COUNT(c)');
+    //     if($filters!=null){
+    //         $qb
+    //         ->Where('c.division IN(:divs)')
+    //         ->setParameter(':divs', array_values($filters));
+    //     }
+    //     return $qb->getQuery()->getSingleScalarResult();
   
   
-      }
-      public function TotalClients($filters=null){ 
+    //   }
+    public function TotalClients($filters=null, $userId=null){ 
         $qb = $this->createQueryBuilder('c')
-        ->select('COUNT(c)');
+            ->select('COUNT(c)');
         if($filters!=null){
             $qb
-            ->Where('c.division IN(:divs)')
+            ->andWhere('c.division IN(:divs)')
             ->setParameter(':divs', array_values($filters));
         }
+        if($userId!=null){
+            $qb
+            ->andWhere('c.User = :user_id')
+            ->setParameter(':user_id', $userId);
+        }
         return $qb->getQuery()->getSingleScalarResult();
-  
-  
-      }
+    }
       
 //    /**
 //     * @return Client[] Returns an array of Client objects

@@ -68,6 +68,11 @@ class Purchase
      * @ORM\ManyToOne(targetEntity=Supplier::class, inversedBy="purchases")
      */
     private $supplier;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $User;
     public function __toString(){
         return  $this->supplier; 
       }
@@ -145,6 +150,18 @@ class Purchase
     public function setSupplier(?Supplier $supplier): self
     {
         $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

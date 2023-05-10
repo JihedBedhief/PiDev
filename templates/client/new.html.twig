@@ -90,7 +90,9 @@
 							{{ form_widget(f.status,{'attr':{'class':'form-control'}}) }}
 							<div class="invalid-feedback">statuts</div>
 							{{ form_errors(f.status,{'attr':{'class':'text-danger'}}) }}
-
+							<div class="col-sm-18">
+								{{ form_widget(f.User,{'value' : '{{app.user.id}}'}) }}
+							</div>
 						</div>
 					</div>
 					{{ form_end(f) }}

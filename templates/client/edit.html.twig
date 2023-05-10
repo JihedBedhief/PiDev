@@ -4,7 +4,7 @@
 {% endblock %}
 
 
-	{# <center>
+{# <center>
 		<div style="margin-left:200px ; margin-top:170px">
 			<h1>Edit Client</h1>
 			{{include('client/_form.html.twig', {'button_label': 'Update'})}}
@@ -14,15 +14,15 @@
 	</center> #}
 
 {% block body %}
-	 <div class="row" style="margin-left:300px">
-        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+	<div class="row" style="margin-left:300px">
+		<div style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Update Division</h5>
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Update Division</h5>
 
-                    <!-- General Form Elements -->
-                   <!-- General Form Elements -->
+					<!-- General Form Elements -->
+					<!-- General Form Elements -->
 					{{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
 
 					<label for="inputText" class="col-sm-18 col-form-label">name</label>
@@ -86,14 +86,25 @@
 						{{ form_widget(f.ajouter,{'attr':{'class':'btn btn-primary'}}) }}
 					</div>
 
+					<div style="display:none">
+						<div class="col-12">
+							<label for="youraddr" class="form-label">statuts</label>
+							{{ form_widget(f.status,{'attr':{'class':'form-control'}}) }}
+							<div class="invalid-feedback">statuts</div>
+							{{ form_errors(f.status,{'attr':{'class':'text-danger'}}) }}
+							<div class="col-sm-18">
+								{{ form_widget(f.User,{'value' : '{{app.user.id}}'}) }}
+							</div>
+						</div>
+					</div>
 					{{ form_end(f) }}
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 
 
 {% endblock %}

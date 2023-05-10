@@ -31,7 +31,8 @@
 					<th>Ville</th>
 					<th>Code_postal</th>
 					<th>Cin</th>
-					<th>division</th>
+					<th>1division</th>
+					<th>User</th>
 					<th>Date D'ajout</th>
 					<th>actions</th>
 				</tr>
@@ -46,6 +47,7 @@
 						<td>{{ client.codePostal }}</td>
 						<td>{{ client.cin }}</td>
 						<td>{{ client.division }}</td>
+						<td>{{ client.User }}</td>
 						<td>{{ client.DateAjout| date('Y-m-d')  }}</td>
 						<td>
 							<a class="btn btn-success" href="{{path('app_client_edit',{'id':client.id}) }}">edit</a>

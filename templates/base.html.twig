@@ -113,10 +113,10 @@
 							<!-- End Profile Iamge Icon -->
 
 							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-								{# <li class="dropdown-header">
-									<h6>{{app.user.nom}}</h6>
-									<span>{{app.user.domaine}}</span>
-								</li> #}
+								<li class="dropdown-header">
+									{# <h6>{{app.user.nom}}</h6> #}
+									{# <span>{{app.user.email}}</span> #}
+								</li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
@@ -233,13 +233,13 @@
 						</a>
 						<ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 							<li>
-								<a href="{{ path('app_product_index') }} ">
+								<a href="{{ path('app_produit_index') }} ">
 									<i class="bi bi-circle"></i>
 									<span>Listes produits</span>
 								</a>
 							</li>
 							<li>
-								<a href="{{ path('app_category_index') }} ">
+								<a href="{{ path('app_categorie_index') }} ">
 									<i class="bi bi-circle"></i>
 									<span>Listes  Categorie</span>
 								</a>
@@ -259,6 +259,12 @@
 								<a href="{{ path('app_vente_index') }} ">
 									<i class="bi bi-circle"></i>
 									<span>Listes vente</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_point_vente_index') }} ">
+									<i class="bi bi-circle"></i>
+									<span>Listes Points de ventes</span>
 								</a>
 							</li>
 

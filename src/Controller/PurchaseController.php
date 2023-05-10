@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
 use App\Entity\Purchase;
 use App\Form\PurchaseType;
+use App\Repository\UserRepository;
 use App\Repository\PurchaseRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Dompdf\Dompdf;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/purchase")
@@ -23,10 +25,12 @@ class PurchaseController extends AbstractController
     /**
      * @Route("/", name="app_purchase_index", methods={"GET"})
      */
-    public function index (Request $request, PaginatorInterface $paginator) // Nous ajoutons les paramètres requis
+    public function index (Request $request, PaginatorInterface $paginator,UserRepository $usser,Security $security) // Nous ajoutons les paramètres requis
     {
+        $userId = $security->getUser();
+        $usr=$usser->find($userId);
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
-        $donnees = $this->getDoctrine()->getRepository(Purchase::class)->findAll();
+        $donnees = $this->getDoctrine()->getRepository(Purchase::class)->getAchatByUserId($usr->getId());
 
         $purchases = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)

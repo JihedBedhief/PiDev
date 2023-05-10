@@ -132,6 +132,11 @@ class Client
      */
     private $vente;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $User;
+
     public function __construct()
     {
         $this->vente = new ArrayCollection();
@@ -283,4 +288,16 @@ class Client
 public function __toString(){
         return  $this->name; 
       }
+
+public function getUser(): ?User
+{
+    return $this->User;
+}
+
+public function setUser(?User $User): self
+{
+    $this->User = $User;
+
+    return $this;
+}
 }

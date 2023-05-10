@@ -63,4 +63,14 @@ class PurchaseRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getAchatByUserId($user_id)
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->join('e.User', 'u')
+            ->where('u.id = :user_id')
+            ->setParameter(':user_id', $user_id);
+
+        return $qb->getQuery()->getResult();
+    }
 }

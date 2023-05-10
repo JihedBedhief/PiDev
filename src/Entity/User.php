@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Abonnement;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 
 
@@ -145,16 +146,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
-
- 
-
-
-
-    public function __construct()
-    {
-        $this->rhs = new ArrayCollection();
-        $this->employees = new ArrayCollection();
-    }
 
     public function getEmail(): ?string
     {
@@ -312,12 +303,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAbonnement(): ?abonnement
+    public function getAbonnement(): ?Abonnement
     {
         return $this->abonnement;
     }
 
-    public function setAbonnement(?abonnement $abonnement): self
+    public function setAbonnement(?Abonnement $abonnement): self
     {
         $this->abonnement = $abonnement;
 
@@ -373,41 +364,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Rh>
-     */
 
     public function __toString(){
         return  $this->nom; 
       }
 
-    /**
-     * @return Collection<int, Employees>
-     */
-    public function getEmployees(): Collection
-    {
-        return $this->employees;
-    }
 
-    public function addEmployee(Employees $employee): self
-    {
-        if (!$this->employees->contains($employee)) {
-            $this->employees[] = $employee;
-            $employee->setIdComp($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEmployee(Employees $employee): self
-    {
-        if ($this->employees->removeElement($employee)) {
-            // set the owning side to null (unless already changed)
-            if ($employee->getIdComp() === $this) {
-                $employee->setIdComp(null);
-            }
-        }
-
-        return $this;
-    }
 }
